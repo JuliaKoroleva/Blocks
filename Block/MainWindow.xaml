@@ -4,56 +4,12 @@
         Title="MainWindow" Height="550" Width="420">
     <DockPanel >
         <StackPanel DockPanel.Dock="Top" Height="150">
-            <Button Height="28" Margin="0,0,10,0" Content="Начать" />
+            <Button Height="28" Margin="0,0,10,0" Content="Начать" Click="Button_Click"/>
             <Label Content="Score" Height="36" x:Name="Score" FontSize="24" FontWeight="Bold"/>
-            <Grid ShowGridLines="True" Height="80"   Width="400">
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Border Grid.ColumnSpan="11" Grid.RowSpan="3" BorderThickness="4,4" BorderBrush="Black"/>
-            </Grid>
+            <Canvas x:Name="canvasUpper" Height="80" VerticalAlignment="Top"/>
         </StackPanel>
-        <Grid Name="MainGrid" ShowGridLines="True" Height="350" Width="400">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Border Grid.ColumnSpan="10" Grid.RowSpan="10" BorderThickness="5,5" BorderBrush="Black"/>
-        </Grid>
+        <Border Grid.ColumnSpan="10" Grid.RowSpan="10" BorderThickness="5,5" BorderBrush="Black">
+            <Canvas x:Name="canvasMain" Width="403"/>
+        </Border>
     </DockPanel>
 </Window>
