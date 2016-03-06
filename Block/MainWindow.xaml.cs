@@ -70,6 +70,7 @@ namespace Block
 
 
         }
+        public int MyProperty { get; set; }
     }
 
 
