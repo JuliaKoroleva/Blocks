@@ -8,8 +8,8 @@
             <Label Content="Score" Height="36" x:Name="Score" FontSize="24" FontWeight="Bold"/>
             <Canvas x:Name="canvasUpper" Height="80" VerticalAlignment="Top"/>
         </StackPanel>
-        <Border Grid.ColumnSpan="10" Grid.RowSpan="10" BorderThickness="5,5" BorderBrush="Black">
-            <Canvas x:Name="canvasMain" Width="403"/>
+        <Border Grid.ColumnSpan="10" Grid.RowSpan="10" BorderThickness="2" BorderBrush="#7F000000">
+            <Canvas x:Name="canvasMain" Width="400"/>
         </Border>
     </DockPanel>
 </Window>
