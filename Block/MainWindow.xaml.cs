@@ -78,7 +78,7 @@ namespace Block
                     if (field[i, j] != 0)
                     {
                         Random r = new Random();
-                        switch (r.Next()%5)
+                        switch (r.Next()%6)
                         {
                             case 0:
                                 rect.Fill = new SolidColorBrush(Colors.LightCoral);
@@ -93,7 +93,10 @@ namespace Block
                                 rect.Fill = new SolidColorBrush(Colors.Yellow);
                                 break;
                             case 4:
-                                rect.Fill = new SolidColorBrush(Colors.Violet);
+                                rect.Fill = new SolidColorBrush(Colors.Plum);
+                                break;
+                            case 5:
+                                rect.Fill = new SolidColorBrush(Colors.LightPink);
                                 break;
                             default:
                                 break;
