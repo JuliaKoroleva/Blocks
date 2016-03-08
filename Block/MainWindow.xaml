@@ -3,13 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="670" Width="420">
     <DockPanel >
-        <StackPanel DockPanel.Dock="Top" Height="230">
+        <StackPanel DockPanel.Dock="Top" Height="65">
             <Button Height="28" Margin="0,0,10,0" Content="Начать" Click="Button_Click" />
-            <Label Content="Score" Height="36" x:Name="Score" FontSize="24" FontWeight="Bold"/>
-            <Canvas x:Name="canvasUpper" Height="160" Width="400" VerticalAlignment="Top"/>
+            <Label Content="Score" Height="37" x:Name="Score" FontSize="24" FontWeight="Bold"/>
         </StackPanel>
-        <Border Grid.ColumnSpan="10" Grid.RowSpan="10" BorderThickness="2" BorderBrush="#7F000000">
-            <Canvas x:Name="canvasMain" Height="400" Width="400" VerticalAlignment="Bottom"/>
-        </Border>
+        <WrapPanel Height="560" VerticalAlignment="Top" Width="400">
+            <Canvas x:Name="canvasUpper1" Height="160" Width="200" HorizontalAlignment="Left"/>
+            <Canvas x:Name="canvasUpper2" Height="160" Width="200" HorizontalAlignment="Right"/>
+            <Border Grid.ColumnSpan="10" Grid.RowSpan="10" BorderThickness="2" BorderBrush="#7F000000" VerticalAlignment="Bottom">
+                <Canvas x:Name="canvasMain" Height="400" Width="420" VerticalAlignment="Bottom"/>
+            </Border>
+        </WrapPanel>
     </DockPanel>
 </Window>

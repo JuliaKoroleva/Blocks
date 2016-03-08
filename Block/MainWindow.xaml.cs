@@ -26,7 +26,8 @@ namespace Block
         public int[,] mainField = new int[N, N] { { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } }; //массив-схема основного поля
 
         const int M = 4;
-        public int[,] shapeField = new int[M, N] { { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } };
+        const int K = 5;
+        public int[,] shapeField = new int[M, K] { { 0, 0, 0, 0, 0}, { 0, 0, 0, 0, 0}, { 0, 0, 0, 0, 0}, { 0, 0, 0, 0, 0 } };
 
         public int[,] figure1 = new int[M, M] { { 0, 0, 0, 0 }, { 0, 1, 0, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 } };
         public int[,] figure2 = new int[M, M] { { 0, 0, 0, 0 }, { 0, 1, 1, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 } };
@@ -57,7 +58,8 @@ namespace Block
             //перенос фигуры на поле
 
             canvasMain = Redraw(mainField, canvasMain);
-            canvasUpper = Redraw(shapeField, canvasUpper);
+            canvasUpper1 = Redraw(shapeField, canvasUpper1);
+            canvasUpper2 = Redraw(shapeField, canvasUpper2);
         }
 
         public Canvas Redraw(int[,] field, Canvas currentCanvas)
@@ -179,60 +181,116 @@ namespace Block
             switch (r.Next() % 17)
             {
                 case 0:
-                   Redraw(figure1, canvasUpper);
+                   Redraw(figure1, canvasUpper1);
                    break;
                 case 1:
-                    Redraw(figure2, canvasUpper);
+                    Redraw(figure2, canvasUpper1);
                     break;
                 case 2:
-                    Redraw(figure3, canvasUpper);
+                    Redraw(figure3, canvasUpper1);
                     break;
                 case 3:
-                    Redraw(figure4, canvasUpper);
+                    Redraw(figure4, canvasUpper1);
                     break;
                 case 4:
-                    Redraw(figure5, canvasUpper);
+                    Redraw(figure5, canvasUpper1);
                     break;
                 case 5:
-                    Redraw(figure6, canvasUpper);
+                    Redraw(figure6, canvasUpper1);
                     break;
                 case 6:
-                    Redraw(figure7, canvasUpper);
+                    Redraw(figure7, canvasUpper1);
                     break;
                 case 7:
-                    Redraw(figure8, canvasUpper);
+                    Redraw(figure8, canvasUpper1);
                     break;
                 case 8:
-                    Redraw(figure9, canvasUpper);
+                    Redraw(figure9, canvasUpper1);
                     break;
                 case 9:
-                    Redraw(figure10, canvasUpper);
+                    Redraw(figure10, canvasUpper1);
                     break;
                 case 10:
-                    Redraw(figure11, canvasUpper);
+                    Redraw(figure11, canvasUpper1);
                     break;
                 case 11:
-                    Redraw(figure12, canvasUpper);
+                    Redraw(figure12, canvasUpper1);
                     break;
                 case 12:
-                    Redraw(figure13, canvasUpper);
+                    Redraw(figure13, canvasUpper1);
                     break;
                 case 13:
-                    Redraw(figure14, canvasUpper);
+                    Redraw(figure14, canvasUpper1);
                     break;
                 case 14:
-                    Redraw(figure15, canvasUpper);
+                    Redraw(figure15, canvasUpper1);
                     break;
                 case 15:
-                    Redraw(figure16, canvasUpper);
+                    Redraw(figure16, canvasUpper1);
                     break;
                 case 16:
-                    Redraw(figure17, canvasUpper);
+                    Redraw(figure17, canvasUpper1);
                     break;
                 default:
                     break;
             }
 
+            switch (r.Next() % 17)
+            {
+                case 0:
+                    Redraw(figure1, canvasUpper2);
+                    break;
+                case 1:
+                    Redraw(figure2, canvasUpper2);
+                    break;
+                case 2:
+                    Redraw(figure3, canvasUpper2);
+                    break;
+                case 3:
+                    Redraw(figure4, canvasUpper2);
+                    break;
+                case 4:
+                    Redraw(figure5, canvasUpper2);
+                    break;
+                case 5:
+                    Redraw(figure6, canvasUpper2);
+                    break;
+                case 6:
+                    Redraw(figure7, canvasUpper2);
+                    break;
+                case 7:
+                    Redraw(figure8, canvasUpper2);
+                    break;
+                case 8:
+                    Redraw(figure9, canvasUpper2);
+                    break;
+                case 9:
+                    Redraw(figure10, canvasUpper2);
+                    break;
+                case 10:
+                    Redraw(figure11, canvasUpper2);
+                    break;
+                case 11:
+                    Redraw(figure12, canvasUpper2);
+                    break;
+                case 12:
+                    Redraw(figure13, canvasUpper2);
+                    break;
+                case 13:
+                    Redraw(figure14, canvasUpper2);
+                    break;
+                case 14:
+                    Redraw(figure15, canvasUpper2);
+                    break;
+                case 15:
+                    Redraw(figure16, canvasUpper2);
+                    break;
+                case 16:
+                    Redraw(figure17, canvasUpper2);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
