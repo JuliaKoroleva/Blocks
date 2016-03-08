@@ -22,24 +22,26 @@ namespace Block
     public partial class MainWindow : Window
     {
 
-        const int N = 3; //размер поля
-        public int[,] field = new int[N, N] { { 0, 1, 0 }, { 0, 2, 1 }, { 0, 0, 0 } }; //массив-схема основного поля
+        const int N = 10; //размер поля
+        public int[,] mainField = new int[N, N] { { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } }; //массив-схема основного поля
 
+        const int M = 4;
+        public int[,] shapeField = new int[M, N] { { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } };
 
+        double cellWidth = 40.0;
+        double cellHeight = 40.0;
 
         public MainWindow()
         {
             InitializeComponent();
-            canvasMain = Redraw(field, canvasMain);
+            canvasMain = Redraw(mainField, canvasMain);
+            canvasUpper = Redraw(shapeField, canvasUpper);
         }
 
         public Canvas Redraw(int[,] field, Canvas currentCanvas)
         {
-            int rows = field.GetLength(1);
-            int columns = field.GetLength(0);
-            double cellWidth = currentCanvas.Width / Convert.ToDouble(rows);
-            double cellHeight = currentCanvas.Width / Convert.ToDouble(columns);
-
+            int rows = field.GetLength(0);
+            int columns = field.GetLength(1);
 
 
             for (int i = 0; i < rows; i++)
