@@ -27,7 +27,7 @@ namespace Block
 
         const int M = 4;
         const int K = 5;
-        public int[,] shapeField = new int[M, K] { { 0, 0, 0, 0, 0}, { 0, 0, 0, 0, 0}, { 0, 0, 0, 0, 0}, { 0, 0, 0, 0, 0 } };
+        public int[,] shapeField = new int[M, K] { { 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0 } };
 
         public int[,] figure1 = new int[M, M] { { 0, 0, 0, 0 }, { 0, 1, 0, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 } };
         public int[,] figure2 = new int[M, M] { { 0, 0, 0, 0 }, { 0, 1, 1, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 } };
@@ -80,7 +80,7 @@ namespace Block
                     if (field[i, j] != 0)
                     {
                         Random rand = new Random();
-                        switch (rand.Next()%6)
+                        switch (rand.Next() % 6)
                         {
                             case 0:
                                 rect.Fill = new SolidColorBrush(Colors.LightCoral);
@@ -103,7 +103,7 @@ namespace Block
                             default:
                                 break;
                         }
-                        
+
                     }
 
                     Canvas.SetLeft(rect, rect.Width * j);
@@ -127,7 +127,7 @@ namespace Block
                 for (int j = 0; j < N; j++)
                 {
                     if (field[i, j] == 0) //в ряду есть хотя бы одна свободная клетка
-                        flag_rows = true; 
+                        flag_rows = true;
 
                     if (field[j, i] == 0) //в столбце есть хотя бы одна свободная клетка
                         flag_columns = true;
@@ -236,10 +236,11 @@ namespace Block
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-                Random r = new Random();
-                DrawFigures(r,canvasUpper1);
-                DrawFigures(r, canvasUpper2);
+            Random r = new Random();
+            DrawFigures(r, canvasUpper1);
+            DrawFigures(r, canvasUpper2);
         }
+
     }
 
 
