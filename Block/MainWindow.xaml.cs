@@ -44,7 +44,7 @@ namespace Block
         public int[,] figure14 = new int[M, M] { { 1, 0, 0, 0 }, { 1, 0, 0, 0 }, { 1, 1, 1, 0 }, { 0, 0, 0, 0 } };
         public int[,] figure15 = new int[M, M] { { 0, 1, 0, 0 }, { 0, 1, 0, 0 }, { 0, 1, 0, 0 }, { 0, 1, 0, 0 } };
         public int[,] figure16 = new int[M, M] { { 0, 0, 0, 0 }, { 1, 1, 1, 1 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 } };
-        public int[,] figure19 = new int[M, M] { { 1, 1, 1, 0 }, { 1, 1, 1, 0 }, { 1, 1, 1, 0 }, { 0, 0, 0, 0 } };
+        public int[,] figure17 = new int[M, M] { { 1, 1, 1, 0 }, { 1, 1, 1, 0 }, { 1, 1, 1, 0 }, { 0, 0, 0, 0 } };
 
 
         double cellWidth = 40.0;
@@ -77,7 +77,28 @@ namespace Block
 
                     if (field[i, j] != 0)
                     {
-                        rect.Fill = new SolidColorBrush(Colors.LightCoral);
+                        Random r = new Random();
+                        switch (r.Next()%5)
+                        {
+                            case 0:
+                                rect.Fill = new SolidColorBrush(Colors.LightCoral);
+                                break;
+                            case 1:
+                                rect.Fill = new SolidColorBrush(Colors.LightGreen);
+                                break;
+                            case 2:
+                                rect.Fill = new SolidColorBrush(Colors.LightSkyBlue);
+                                break;
+                            case 3:
+                                rect.Fill = new SolidColorBrush(Colors.Yellow);
+                                break;
+                            case 4:
+                                rect.Fill = new SolidColorBrush(Colors.Violet);
+                                break;
+                            default:
+                                break;
+                        }
+                        
                     }
 
                     Canvas.SetLeft(rect, rect.Width * j);
@@ -151,7 +172,63 @@ namespace Block
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            Random r = new Random();
+            switch (r.Next() % 17)
+            {
+                case 0:
+                   Redraw(figure1, canvasUpper);
+                   break;
+                case 1:
+                    Redraw(figure2, canvasUpper);
+                    break;
+                case 2:
+                    Redraw(figure3, canvasUpper);
+                    break;
+                case 3:
+                    Redraw(figure4, canvasUpper);
+                    break;
+                case 4:
+                    Redraw(figure5, canvasUpper);
+                    break;
+                case 5:
+                    Redraw(figure6, canvasUpper);
+                    break;
+                case 6:
+                    Redraw(figure7, canvasUpper);
+                    break;
+                case 7:
+                    Redraw(figure8, canvasUpper);
+                    break;
+                case 8:
+                    Redraw(figure9, canvasUpper);
+                    break;
+                case 9:
+                    Redraw(figure10, canvasUpper);
+                    break;
+                case 10:
+                    Redraw(figure11, canvasUpper);
+                    break;
+                case 11:
+                    Redraw(figure12, canvasUpper);
+                    break;
+                case 12:
+                    Redraw(figure13, canvasUpper);
+                    break;
+                case 13:
+                    Redraw(figure14, canvasUpper);
+                    break;
+                case 14:
+                    Redraw(figure15, canvasUpper);
+                    break;
+                case 15:
+                    Redraw(figure16, canvasUpper);
+                    break;
+                case 16:
+                    Redraw(figure17, canvasUpper);
+                    break;
+                default:
+                    break;
+            }
 
         }
     }
