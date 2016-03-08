@@ -150,7 +150,7 @@ namespace Block
                     }
                 }
 
-                if (!flag_rows) //если весь столбец заполнен
+                if (!flag_columns) //если весь столбец заполнен
                 {
                     Rectangle rect = new Rectangle();
                     rect.Stroke = new SolidColorBrush(Colors.Gray);
@@ -173,6 +173,7 @@ namespace Block
 
             return canvas_Main;
         }
+
 
         public void DrawFigures(Random rand, Canvas currentCanvas)
         {
