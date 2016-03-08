@@ -79,8 +79,8 @@ namespace Block
 
                     if (field[i, j] != 0)
                     {
-                        Random r = new Random();
-                        switch (r.Next()%6)
+                        Random rand = new Random();
+                        switch (rand.Next()%6)
                         {
                             case 0:
                                 rect.Fill = new SolidColorBrush(Colors.LightCoral);
@@ -174,123 +174,71 @@ namespace Block
             return canvas_Main;
         }
 
+        public void DrawFigures(Random rand, Canvas currentCanvas)
+        {
+            switch (rand.Next() % 17)
+            {
+                case 0:
+                    Redraw(figure1, currentCanvas);
+                    break;
+                case 1:
+                    Redraw(figure2, currentCanvas);
+                    break;
+                case 2:
+                    Redraw(figure3, currentCanvas);
+                    break;
+                case 3:
+                    Redraw(figure4, currentCanvas);
+                    break;
+                case 4:
+                    Redraw(figure5, currentCanvas);
+                    break;
+                case 5:
+                    Redraw(figure6, currentCanvas);
+                    break;
+                case 6:
+                    Redraw(figure7, currentCanvas);
+                    break;
+                case 7:
+                    Redraw(figure8, currentCanvas);
+                    break;
+                case 8:
+                    Redraw(figure9, currentCanvas);
+                    break;
+                case 9:
+                    Redraw(figure10, currentCanvas);
+                    break;
+                case 10:
+                    Redraw(figure11, currentCanvas);
+                    break;
+                case 11:
+                    Redraw(figure12, currentCanvas);
+                    break;
+                case 12:
+                    Redraw(figure13, currentCanvas);
+                    break;
+                case 13:
+                    Redraw(figure14, currentCanvas);
+                    break;
+                case 14:
+                    Redraw(figure15, currentCanvas);
+                    break;
+                case 15:
+                    Redraw(figure16, currentCanvas);
+                    break;
+                case 16:
+                    Redraw(figure17, currentCanvas);
+                    break;
+                default:
+                    break;
+            }
+        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Random r = new Random();
-            switch (r.Next() % 17)
-            {
-                case 0:
-                   Redraw(figure1, canvasUpper1);
-                   break;
-                case 1:
-                    Redraw(figure2, canvasUpper1);
-                    break;
-                case 2:
-                    Redraw(figure3, canvasUpper1);
-                    break;
-                case 3:
-                    Redraw(figure4, canvasUpper1);
-                    break;
-                case 4:
-                    Redraw(figure5, canvasUpper1);
-                    break;
-                case 5:
-                    Redraw(figure6, canvasUpper1);
-                    break;
-                case 6:
-                    Redraw(figure7, canvasUpper1);
-                    break;
-                case 7:
-                    Redraw(figure8, canvasUpper1);
-                    break;
-                case 8:
-                    Redraw(figure9, canvasUpper1);
-                    break;
-                case 9:
-                    Redraw(figure10, canvasUpper1);
-                    break;
-                case 10:
-                    Redraw(figure11, canvasUpper1);
-                    break;
-                case 11:
-                    Redraw(figure12, canvasUpper1);
-                    break;
-                case 12:
-                    Redraw(figure13, canvasUpper1);
-                    break;
-                case 13:
-                    Redraw(figure14, canvasUpper1);
-                    break;
-                case 14:
-                    Redraw(figure15, canvasUpper1);
-                    break;
-                case 15:
-                    Redraw(figure16, canvasUpper1);
-                    break;
-                case 16:
-                    Redraw(figure17, canvasUpper1);
-                    break;
-                default:
-                    break;
-            }
-
-            switch (r.Next() % 17)
-            {
-                case 0:
-                    Redraw(figure1, canvasUpper2);
-                    break;
-                case 1:
-                    Redraw(figure2, canvasUpper2);
-                    break;
-                case 2:
-                    Redraw(figure3, canvasUpper2);
-                    break;
-                case 3:
-                    Redraw(figure4, canvasUpper2);
-                    break;
-                case 4:
-                    Redraw(figure5, canvasUpper2);
-                    break;
-                case 5:
-                    Redraw(figure6, canvasUpper2);
-                    break;
-                case 6:
-                    Redraw(figure7, canvasUpper2);
-                    break;
-                case 7:
-                    Redraw(figure8, canvasUpper2);
-                    break;
-                case 8:
-                    Redraw(figure9, canvasUpper2);
-                    break;
-                case 9:
-                    Redraw(figure10, canvasUpper2);
-                    break;
-                case 10:
-                    Redraw(figure11, canvasUpper2);
-                    break;
-                case 11:
-                    Redraw(figure12, canvasUpper2);
-                    break;
-                case 12:
-                    Redraw(figure13, canvasUpper2);
-                    break;
-                case 13:
-                    Redraw(figure14, canvasUpper2);
-                    break;
-                case 14:
-                    Redraw(figure15, canvasUpper2);
-                    break;
-                case 15:
-                    Redraw(figure16, canvasUpper2);
-                    break;
-                case 16:
-                    Redraw(figure17, canvasUpper2);
-                    break;
-                default:
-                    break;
-            }
+                Random r = new Random();
+                DrawFigures(r,canvasUpper1);
+                DrawFigures(r, canvasUpper2);
         }
     }
 
