@@ -23,30 +23,19 @@ namespace Block
     {
 
         const int N = 10; //размер поля
-        public int[,] mainField = new int[N, N] { { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } }; //массив-схема основного поля
+        public int[,] mainField = new int [N,N];
 
         const int M = 4;
         const int K = 5;
-        public int[,] shapeField = new int[M, K] { { 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0 } };
+        public int[,] shapeField = new int[M,K];
 
-        public int[,] figure1 = new int[M, M] { { 0, 0, 0, 0 }, { 0, 1, 0, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 } };
-        public int[,] figure2 = new int[M, M] { { 0, 0, 0, 0 }, { 0, 1, 1, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 } };
-        public int[,] figure3 = new int[M, M] { { 0, 0, 0, 0 }, { 0, 1, 0, 0 }, { 0, 1, 0, 0 }, { 0, 0, 0, 0 } };
-        public int[,] figure4 = new int[M, M] { { 0, 0, 0, 0 }, { 0, 1, 1, 0 }, { 0, 1, 0, 0 }, { 0, 0, 0, 0 } };
-        public int[,] figure5 = new int[M, M] { { 0, 0, 0, 0 }, { 0, 1, 1, 0 }, { 0, 0, 1, 0 }, { 0, 0, 0, 0 } };
-        public int[,] figure6 = new int[M, M] { { 0, 0, 0, 0 }, { 0, 0, 1, 0 }, { 0, 1, 1, 0 }, { 0, 0, 0, 0 } };
-        public int[,] figure7 = new int[M, M] { { 0, 0, 0, 0 }, { 0, 1, 0, 0 }, { 0, 1, 1, 0 }, { 0, 0, 0, 0 } };
-        public int[,] figure8 = new int[M, M] { { 0, 0, 0, 0 }, { 0, 1, 1, 0 }, { 0, 1, 1, 0 }, { 0, 0, 0, 0 } };
-        public int[,] figure9 = new int[M, M] { { 0, 1, 0, 0 }, { 0, 1, 0, 0 }, { 0, 1, 0, 0 }, { 0, 0, 0, 0 } };
-        public int[,] figure10 = new int[M, M] { { 0, 0, 0, 0 }, { 1, 1, 1, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 } };
-        public int[,] figure11 = new int[M, M] { { 1, 1, 1, 0 }, { 1, 0, 0, 0 }, { 1, 0, 0, 0 }, { 0, 0, 0, 0 } };
-        public int[,] figure12 = new int[M, M] { { 1, 1, 1, 0 }, { 0, 0, 1, 0 }, { 0, 0, 1, 0 }, { 0, 0, 1, 0 } };
-        public int[,] figure13 = new int[M, M] { { 0, 0, 1, 0 }, { 0, 0, 1, 0 }, { 1, 1, 1, 0 }, { 0, 0, 0, 0 } };
-        public int[,] figure14 = new int[M, M] { { 1, 0, 0, 0 }, { 1, 0, 0, 0 }, { 1, 1, 1, 0 }, { 0, 0, 0, 0 } };
-        public int[,] figure15 = new int[M, M] { { 0, 1, 0, 0 }, { 0, 1, 0, 0 }, { 0, 1, 0, 0 }, { 0, 1, 0, 0 } };
-        public int[,] figure16 = new int[M, M] { { 0, 0, 0, 0 }, { 1, 1, 1, 1 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 } };
-        public int[,] figure17 = new int[M, M] { { 1, 1, 1, 0 }, { 1, 1, 1, 0 }, { 1, 1, 1, 0 }, { 0, 0, 0, 0 } };
-
+        Figure figure1;         Figure figure2;         Figure figure3;
+        Figure figure4;         Figure figure5;         Figure figure6;
+        Figure figure7;         Figure figure8;         Figure figure9;
+        Figure figure10;        Figure figure11;        Figure figure12;
+        Figure figure13;        Figure figure14;        Figure figure15;
+        Figure figure16;        Figure figure17;
+        public Figure[] figuresArray;
 
         double cellWidth = 40.0;
         double cellHeight = 40.0;
@@ -55,12 +44,119 @@ namespace Block
         {
             InitializeComponent();
 
-            //перенос фигуры на поле
+            for (int i = 0; i < N; i++) //Создаем массив-схему основного поля
+            {
+                for (int j = 0; j < N; j++)
+                {
+                    mainField[i, j] = 0;
+                }
+            }
+
+            for (int i = 0; i < M; i++) //Создаем массив-схему верхнего поля
+            {
+                for (int j = 0; j < K; j++)
+                {
+                    shapeField[i, j] = 0;
+                }
+            }
 
             canvasMain = Redraw(mainField, canvasMain);
             canvasUpper1 = Redraw(shapeField, canvasUpper1);
             canvasUpper2 = Redraw(shapeField, canvasUpper2);
+
+
+            int[,] shape1 = new int[M, M] { { 0, 0, 0, 0 }, 
+                                            { 0, 1, 0, 0 }, 
+                                            { 0, 0, 0, 0 }, 
+                                            { 0, 0, 0, 0 } };            figure1 = new Figure(shape1);
+            
+            int[,] shape2 = new int[M, M] { { 0, 0, 0, 0 }, 
+                                            { 0, 1, 1, 0 }, 
+                                            { 0, 0, 0, 0 }, 
+                                            { 0, 0, 0, 0 } };            figure2 = new Figure(shape2);
+
+            int[,] shape3 = new int[M, M] { { 0, 0, 0, 0 }, 
+                                            { 0, 1, 0, 0 }, 
+                                            { 0, 1, 0, 0 }, 
+                                            { 0, 0, 0, 0 } };            figure3 = new Figure(shape3);
+
+            int[,] shape4 = new int[M, M] { { 0, 0, 0, 0 }, 
+                                            { 0, 1, 1, 0 }, 
+                                            { 0, 1, 0, 0 }, 
+                                            { 0, 0, 0, 0 } };            figure4 = new Figure(shape4);
+
+            int[,] shape5 = new int[M, M] { { 0, 0, 0, 0 }, 
+                                            { 0, 1, 1, 0 }, 
+                                            { 0, 0, 1, 0 }, 
+                                            { 0, 0, 0, 0 } };            figure5 = new Figure(shape5);
+
+            int[,] shape6 = new int[M, M] { { 0, 0, 0, 0 }, 
+                                            { 0, 0, 1, 0 }, 
+                                            { 0, 1, 1, 0 }, 
+                                            { 0, 0, 0, 0 } };            figure6 = new Figure(shape6);
+
+            int[,] shape7 = new int[M, M] { { 0, 0, 0, 0 }, 
+                                            { 0, 1, 0, 0 }, 
+                                            { 0, 1, 1, 0 }, 
+                                            { 0, 0, 0, 0 } };            figure7 = new Figure(shape7);
+
+            int[,] shape8 = new int[M, M] { { 0, 0, 0, 0 }, 
+                                            { 0, 1, 1, 0 }, 
+                                            { 0, 1, 1, 0 }, 
+                                            { 0, 0, 0, 0 } };            figure8 = new Figure(shape8);
+
+            int[,] shape9 = new int[M, M] { { 0, 1, 0, 0 }, 
+                                            { 0, 1, 0, 0 }, 
+                                            { 0, 1, 0, 0 }, 
+                                            { 0, 0, 0, 0 } };            figure9 = new Figure(shape9);
+
+            int[,] shape10 = new int[M, M] { { 0, 0, 0, 0 }, 
+                                             { 1, 1, 1, 0 }, 
+                                             { 0, 0, 0, 0 }, 
+                                             { 0, 0, 0, 0 } };            figure10 = new Figure(shape10);
+
+            int[,] shape11 = new int[M, M] { { 1, 1, 1, 0 }, 
+                                             { 1, 0, 0, 0 }, 
+                                             { 1, 0, 0, 0 }, 
+                                             { 0, 0, 0, 0 } };            figure11 = new Figure(shape11);
+
+            int[,] shape12 = new int[M, M] { { 1, 1, 1, 0 }, 
+                                             { 0, 0, 1, 0 }, 
+                                             { 0, 0, 1, 0 }, 
+                                             { 0, 0, 1, 0 } };            figure12 = new Figure(shape12);
+
+            int[,] shape13 = new int[M, M] { { 0, 0, 1, 0 }, 
+                                             { 0, 0, 1, 0 }, 
+                                             { 1, 1, 1, 0 }, 
+                                             { 0, 0, 0, 0 } };            figure13 = new Figure(shape13);
+
+            int[,] shape14 = new int[M, M] { { 1, 0, 0, 0 },
+                                             { 1, 0, 0, 0 }, 
+                                             { 1, 1, 1, 0 }, 
+                                             { 0, 0, 0, 0 } };            figure14 = new Figure(shape14);
+
+            int[,] shape15 = new int[M, M] { { 0, 1, 0, 0 }, 
+                                             { 0, 1, 0, 0 }, 
+                                             { 0, 1, 0, 0 }, 
+                                             { 0, 1, 0, 0 } };            figure15 = new Figure(shape15);
+
+            int[,] shape16 = new int[M, M] { { 0, 0, 0, 0 }, 
+                                             { 1, 1, 1, 1 }, 
+                                             { 0, 0, 0, 0 }, 
+                                             { 0, 0, 0, 0 } };            figure16 = new Figure(shape16);
+
+            int[,] shape17 = new int[M, M] { { 1, 1, 1, 0 }, 
+                                             { 1, 1, 1, 0 }, 
+                                             { 1, 1, 1, 0 }, 
+                                             { 0, 0, 0, 0 } };            figure17 = new Figure(shape17);
+
+            figuresArray = new Figure[17] { figure1, figure2, figure3, figure4,
+                                            figure5, figure6, figure7, figure8,
+                                            figure9, figure10, figure11, figure12,
+                                            figure13, figure14, figure15, figure16, figure17 };
         }
+
+
 
         public Canvas Redraw(int[,] field, Canvas currentCanvas)
         {
@@ -77,7 +173,7 @@ namespace Block
                     rect.Width = cellWidth;
                     rect.Height = cellHeight;
 
-                    if (field[i, j] != 0)
+                    if (field[i,j] != 0)
                     {
                         Random rand = new Random();
                         switch (rand.Next() % 6)
@@ -103,7 +199,7 @@ namespace Block
                             default:
                                 break;
                         }
-
+                        
                     }
 
                     Canvas.SetLeft(rect, rect.Width * j);
@@ -180,55 +276,55 @@ namespace Block
             switch (rand.Next() % 17)
             {
                 case 0:
-                    Redraw(figure1, currentCanvas);
+                    Redraw(figure1.shape, currentCanvas);
                     break;
                 case 1:
-                    Redraw(figure2, currentCanvas);
+                    Redraw(figure2.shape, currentCanvas);
                     break;
                 case 2:
-                    Redraw(figure3, currentCanvas);
+                    Redraw(figure3.shape, currentCanvas);
                     break;
                 case 3:
-                    Redraw(figure4, currentCanvas);
+                    Redraw(figure4.shape, currentCanvas);
                     break;
                 case 4:
-                    Redraw(figure5, currentCanvas);
+                    Redraw(figure5.shape, currentCanvas);
                     break;
                 case 5:
-                    Redraw(figure6, currentCanvas);
+                    Redraw(figure6.shape, currentCanvas);
                     break;
                 case 6:
-                    Redraw(figure7, currentCanvas);
+                    Redraw(figure7.shape, currentCanvas);
                     break;
                 case 7:
-                    Redraw(figure8, currentCanvas);
+                    Redraw(figure8.shape, currentCanvas);
                     break;
                 case 8:
-                    Redraw(figure9, currentCanvas);
+                    Redraw(figure9.shape, currentCanvas);
                     break;
                 case 9:
-                    Redraw(figure10, currentCanvas);
+                    Redraw(figure10.shape, currentCanvas);
                     break;
                 case 10:
-                    Redraw(figure11, currentCanvas);
+                    Redraw(figure11.shape, currentCanvas);
                     break;
                 case 11:
-                    Redraw(figure12, currentCanvas);
+                    Redraw(figure12.shape, currentCanvas);
                     break;
                 case 12:
-                    Redraw(figure13, currentCanvas);
+                    Redraw(figure13.shape, currentCanvas);
                     break;
                 case 13:
-                    Redraw(figure14, currentCanvas);
+                    Redraw(figure14.shape, currentCanvas);
                     break;
                 case 14:
-                    Redraw(figure15, currentCanvas);
+                    Redraw(figure15.shape, currentCanvas);
                     break;
                 case 15:
-                    Redraw(figure16, currentCanvas);
+                    Redraw(figure16.shape, currentCanvas);
                     break;
                 case 16:
-                    Redraw(figure17, currentCanvas);
+                    Redraw(figure17.shape, currentCanvas);
                     break;
                 default:
                     break;
@@ -237,9 +333,9 @@ namespace Block
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Random r = new Random();
+                Random r = new Random();
             DrawFigures(r, canvasUpper1);
-            DrawFigures(r, canvasUpper2);
+                DrawFigures(r, canvasUpper2);
         }
 
     }
