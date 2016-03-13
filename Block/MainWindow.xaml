@@ -5,7 +5,7 @@
         Width="420">
     <DockPanel >
         <StackPanel DockPanel.Dock="Top" Height="65">
-            <Button Height="28" Margin="0,0,10,0" Content="Начать" Click="Button_Click" />
+            <Button Height="28" Margin="0,0,10,0" Name="Start" Content="Начать" Click="Button_Click" />
             <Label Content="Score" Height="37" x:Name="Score" FontSize="24" FontWeight="Bold"/>
         </StackPanel>
         <WrapPanel Height="560" VerticalAlignment="Top" Width="400">

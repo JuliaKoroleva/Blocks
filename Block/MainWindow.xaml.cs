@@ -21,6 +21,19 @@ namespace Block
     /// </summary>
     public partial class MainWindow : Window
     {
+        const int N = 10; //размер поля
+        public int[,] mainField = new int[N, N];
+
+        const int M = 4;
+        const int K = 5;
+        public int[,] shapeField = new int[M, K];
+
+        Figure figure1; Figure figure2; Figure figure3;
+        Figure figure4; Figure figure5; Figure figure6;
+        Figure figure7; Figure figure8; Figure figure9;
+        Figure figure10; Figure figure11; Figure figure12;
+        Figure figure13; Figure figure14; Figure figure15;
+        Figure figure16; Figure figure17;
 
         int[,] shape1 = new int[M, M] { { 0, 0, 0, 0 }, 
                                             { 0, 1, 0, 0 }, 
@@ -106,21 +119,6 @@ namespace Block
                                              { 1, 1, 1, 0 }, 
                                              { 0, 0, 0, 0 } };
 
-        const int N = 10; //размер поля
-        public int[,] mainField = new int[N, N];
-
-        const int M = 4;
-        const int K = 5;
-        public int[,] shapeField = new int[M, K];
-
-        Figure figure1; Figure figure2; Figure figure3;
-        Figure figure4; Figure figure5; Figure figure6;
-        Figure figure7; Figure figure8; Figure figure9;
-        Figure figure10; Figure figure11; Figure figure12;
-        Figure figure13; Figure figure14; Figure figure15;
-        Figure figure16; Figure figure17;
-        public Figure[] figuresArray;
-
         double cellWidth = 40.0;
         double cellHeight = 40.0;
 
@@ -147,23 +145,12 @@ namespace Block
             canvasMain = Redraw(mainField, canvasMain);
             canvasUpper1 = Redraw(shapeField, canvasUpper1);
             canvasUpper2 = Redraw(shapeField, canvasUpper2);
-
-
-
-
-            figuresArray = new Figure[17] { figure1, figure2, figure3, figure4,
-                                            figure5, figure6, figure7, figure8,
-                                            figure9, figure10, figure11, figure12,
-                                            figure13, figure14, figure15, figure16, figure17 };
         }
-
-
 
         public Canvas Redraw(int[,] field, Canvas currentCanvas)
         {
             int rows = field.GetLength(0);
             int columns = field.GetLength(1);
-
 
             for (int i = 0; i < rows; i++)
             {
@@ -200,7 +187,6 @@ namespace Block
                             default:
                                 break;
                         }
-
                     }
 
                     Canvas.SetLeft(rect, rect.Width * j);
@@ -208,7 +194,6 @@ namespace Block
                     currentCanvas.Children.Add(rect);
                 }
             }
-
             return currentCanvas;
         }
 
@@ -348,15 +333,13 @@ namespace Block
                     break;
             }
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Random r = new Random();
             DrawFigures(r, canvasUpper1);
             DrawFigures(r, canvasUpper2);
+            Start.IsEnabled = false;
         }
 
     }
-
-
 }
