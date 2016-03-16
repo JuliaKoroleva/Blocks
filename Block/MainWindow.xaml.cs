@@ -150,6 +150,13 @@ namespace Block
                 }
             }
 
+            figure0 = new Figure(shape0); figure1 = new Figure(shape1); figure2 = new Figure(shape2);
+            figure3 = new Figure(shape3); figure4 = new Figure(shape4); figure5 = new Figure(shape5);
+            figure6 = new Figure(shape6); figure7 = new Figure(shape7); figure8 = new Figure(shape8);
+            figure9 = new Figure(shape9); figure10 = new Figure(shape10); figure11 = new Figure(shape11);
+            figure12 = new Figure(shape12); figure13 = new Figure(shape13); figure14 = new Figure(shape14);
+            figure15 = new Figure(shape15); figure16 = new Figure(shape16);
+
             figuresArray = new Figure[17] {figure0, figure1, figure2, figure3, figure4,
                                            figure5, figure6, figure7, figure8, figure9,
                                            figure10, figure11, figure12, figure13, figure14,
@@ -277,7 +284,6 @@ namespace Block
             switch (rand.Next() % 17)
             {
                 case 0:
-                    figure0 = new Figure(shape0);
                     Redraw(figure0.shape, currentCanvas);
                     break;
                 case 1:
