@@ -10,13 +10,13 @@
         </StackPanel>
         <WrapPanel Height="560" VerticalAlignment="Top" Width="400">
             <Canvas x:Name="canvasUpper1" Height="160" Width="200" HorizontalAlignment="Left">
-                <Canvas x:Name="canvasMove1" Background="Transparent" Height="160" Width="200"/>
+                <Canvas x:Name="canvasMove1" MouseLeftButtonDown="CanvasMove1_MouseLeftButtonDown" Background="Transparent" Height="160" Width="200"/>
             </Canvas>
             <Canvas x:Name="canvasUpper2" Height="160" Width="200" HorizontalAlignment="Right">
-                <Canvas x:Name="canvasMove2" Background="Transparent" Height="160" Width="200"/>
+                <Canvas x:Name="canvasMove2" MouseLeftButtonDown="CanvasMove2_MouseLeftButtonDown" Background="Transparent" Height="160" Width="200"/>
             </Canvas>
             <Border Grid.ColumnSpan="10" Grid.RowSpan="10" BorderThickness="2" BorderBrush="#7F000000" VerticalAlignment="Bottom">
-                <Canvas x:Name="canvasMain" Height="400" Width="420" VerticalAlignment="Bottom"/>
+                <Canvas x:Name="canvasMain" AllowDrop="True" Drop="Canvas_Drop"  Height="400" Width="420" VerticalAlignment="Bottom"/>
             </Border>
         </WrapPanel>
     </DockPanel>

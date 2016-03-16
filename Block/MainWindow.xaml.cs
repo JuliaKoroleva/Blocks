@@ -133,6 +133,8 @@ namespace Block
         public MainWindow()
         {
             InitializeComponent();
+            canvasMove1.MouseLeftButtonDown += CanvasMove1_MouseLeftButtonDown; //Нажимаем на левую фигуру
+            canvasMove2.MouseLeftButtonDown += CanvasMove2_MouseLeftButtonDown; //Нажимаем на правую фигуру
 
             for (int i = 0; i < N; i++) //Создаем массив-схему основного поля
             {
@@ -382,16 +384,14 @@ namespace Block
             currentFigureNumber1 = DrawFigures(r, canvasUpper1);
             currentFigureNumber2 = DrawFigures(r, canvasUpper2);
             Start.IsEnabled = false;
-
-            canvasMove1.MouseLeftButtonDown += CanvasMove1_MouseLeftButtonDown; //Нажимаем на левую фигуру
-            canvasMove2.MouseLeftButtonDown += CanvasMove2_MouseLeftButtonDown; //Нажимаем на правую фигуру
-            
         }
 
         private void CanvasMove1_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Redraw(figuresArray[currentFigureNumber1].shape, canvasMove1); //Рисуем фигуру, которую будет перемещать
             mousePosition = Mouse.GetPosition(canvasMain);
+            Canvas c = (Canvas)sender;
+            DragDrop.DoDragDrop(canvasMove1, c, DragDropEffects.Copy);
             //НАДО ДВИГАТЬ КАНВАС canvasMove1
         }
 
@@ -399,9 +399,15 @@ namespace Block
         {
             Redraw(figuresArray[currentFigureNumber2].shape, canvasMove2); //Рисуем фигуру, которую будет перемещать
             mousePosition = Mouse.GetPosition(canvasMain);
+            Canvas c = (Canvas)sender;
+            DragDrop.DoDragDrop(canvasMove2,c, DragDropEffects.Copy);
             //НАДО ДВИГАТЬ КАНВАС canvasMove2
         }
-
+        private void Canvas_Drop(object sender, DragEventArgs e)
+        {
+            Canvas elem = e.Data.GetData(typeof(Canvas)) as Canvas;
+            canvasMain.Children.Add(elem);
+        }
 
 
 
