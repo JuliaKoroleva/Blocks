@@ -28,93 +28,101 @@ namespace Block
         const int K = 5;
         public int[,] shapeField = new int[M, K];
 
-        Figure figure1; Figure figure2; Figure figure3;
-        Figure figure4; Figure figure5; Figure figure6;
-        Figure figure7; Figure figure8; Figure figure9;
-        Figure figure10; Figure figure11; Figure figure12;
-        Figure figure13; Figure figure14; Figure figure15;
-        Figure figure16; Figure figure17;
+        int currentFigureNumber1 = 0;
+        int currentFigureNumber2 = 0;
 
-        int[,] shape1 = new int[M, M] { { 0, 0, 0, 0 }, 
+        bool selected = false;
+        Point mousePosition;
+
+        Figure[] figuresArray;
+
+        Figure figure0; Figure figure1; Figure figure2;
+        Figure figure3; Figure figure4; Figure figure5;
+        Figure figure6; Figure figure7; Figure figure8;
+        Figure figure9; Figure figure10; Figure figure11;
+        Figure figure12; Figure figure13; Figure figure14;
+        Figure figure15; Figure figure16;
+
+        int[,] shape0 = new int[M, M] { { 0, 0, 0, 0 }, 
                                             { 0, 1, 0, 0 }, 
                                             { 0, 0, 0, 0 }, 
                                             { 0, 0, 0, 0 } };
-        int[,] shape2 = new int[M, M] { { 0, 0, 0, 0 }, 
+        int[,] shape1 = new int[M, M] { { 0, 0, 0, 0 }, 
                                             { 0, 1, 1, 0 }, 
                                             { 0, 0, 0, 0 }, 
                                             { 0, 0, 0, 0 } };
 
-        int[,] shape3 = new int[M, M] { { 0, 0, 0, 0 }, 
+        int[,] shape2 = new int[M, M] { { 0, 0, 0, 0 }, 
                                             { 0, 1, 0, 0 }, 
+                                            { 0, 1, 0, 0 }, 
+                                            { 0, 0, 0, 0 } };
+
+        int[,] shape3 = new int[M, M] { { 0, 0, 0, 0 }, 
+                                            { 0, 1, 1, 0 }, 
                                             { 0, 1, 0, 0 }, 
                                             { 0, 0, 0, 0 } };
 
         int[,] shape4 = new int[M, M] { { 0, 0, 0, 0 }, 
                                             { 0, 1, 1, 0 }, 
-                                            { 0, 1, 0, 0 }, 
+                                            { 0, 0, 1, 0 }, 
                                             { 0, 0, 0, 0 } };
 
         int[,] shape5 = new int[M, M] { { 0, 0, 0, 0 }, 
-                                            { 0, 1, 1, 0 }, 
                                             { 0, 0, 1, 0 }, 
+                                            { 0, 1, 1, 0 }, 
                                             { 0, 0, 0, 0 } };
 
         int[,] shape6 = new int[M, M] { { 0, 0, 0, 0 }, 
-                                            { 0, 0, 1, 0 }, 
+                                            { 0, 1, 0, 0 }, 
                                             { 0, 1, 1, 0 }, 
                                             { 0, 0, 0, 0 } };
 
         int[,] shape7 = new int[M, M] { { 0, 0, 0, 0 }, 
-                                            { 0, 1, 0, 0 }, 
-                                            { 0, 1, 1, 0 }, 
-                                            { 0, 0, 0, 0 } };
-
-        int[,] shape8 = new int[M, M] { { 0, 0, 0, 0 }, 
                                             { 0, 1, 1, 0 }, 
                                             { 0, 1, 1, 0 }, 
                                             { 0, 0, 0, 0 } };
 
-        int[,] shape9 = new int[M, M] { { 0, 1, 0, 0 }, 
+        int[,] shape8 = new int[M, M] { { 0, 1, 0, 0 }, 
                                             { 0, 1, 0, 0 }, 
                                             { 0, 1, 0, 0 }, 
                                             { 0, 0, 0, 0 } };
 
-        int[,] shape10 = new int[M, M] { { 0, 0, 0, 0 }, 
+        int[,] shape9 = new int[M, M] { { 0, 0, 0, 0 }, 
                                              { 1, 1, 1, 0 }, 
                                              { 0, 0, 0, 0 }, 
                                              { 0, 0, 0, 0 } };
 
-        int[,] shape11 = new int[M, M] { { 1, 1, 1, 0 }, 
+        int[,] shape10 = new int[M, M] { { 1, 1, 1, 0 }, 
                                              { 1, 0, 0, 0 }, 
                                              { 1, 0, 0, 0 }, 
                                              { 0, 0, 0, 0 } };
 
-        int[,] shape12 = new int[M, M] { { 1, 1, 1, 0 }, 
+        int[,] shape11 = new int[M, M] { { 1, 1, 1, 0 }, 
                                              { 0, 0, 1, 0 }, 
                                              { 0, 0, 1, 0 }, 
                                              { 0, 0, 1, 0 } };
 
-        int[,] shape13 = new int[M, M] { { 0, 0, 1, 0 }, 
+        int[,] shape12 = new int[M, M] { { 0, 0, 1, 0 }, 
                                              { 0, 0, 1, 0 }, 
                                              { 1, 1, 1, 0 }, 
                                              { 0, 0, 0, 0 } };
 
-        int[,] shape14 = new int[M, M] { { 1, 0, 0, 0 },
+        int[,] shape13 = new int[M, M] { { 1, 0, 0, 0 },
                                              { 1, 0, 0, 0 }, 
                                              { 1, 1, 1, 0 }, 
                                              { 0, 0, 0, 0 } };
 
-        int[,] shape15 = new int[M, M] { { 0, 1, 0, 0 }, 
+        int[,] shape14 = new int[M, M] { { 0, 1, 0, 0 }, 
                                              { 0, 1, 0, 0 }, 
                                              { 0, 1, 0, 0 }, 
                                              { 0, 1, 0, 0 } };
 
-        int[,] shape16 = new int[M, M] { { 0, 0, 0, 0 }, 
+        int[,] shape15 = new int[M, M] { { 0, 0, 0, 0 }, 
                                              { 1, 1, 1, 1 }, 
                                              { 0, 0, 0, 0 }, 
                                              { 0, 0, 0, 0 } };
 
-        int[,] shape17 = new int[M, M] { { 1, 1, 1, 0 }, 
+        int[,] shape16 = new int[M, M] { { 1, 1, 1, 0 }, 
                                              { 1, 1, 1, 0 }, 
                                              { 1, 1, 1, 0 }, 
                                              { 0, 0, 0, 0 } };
@@ -141,6 +149,11 @@ namespace Block
                     shapeField[i, j] = 0;
                 }
             }
+
+            figuresArray = new Figure[17] {figure0, figure1, figure2, figure3, figure4,
+                                           figure5, figure6, figure7, figure8, figure9,
+                                           figure10, figure11, figure12, figure13, figure14,
+                                           figure15, figure16};
 
             canvasMain = Redraw(mainField, canvasMain);
             canvasUpper1 = Redraw(shapeField, canvasUpper1);
@@ -257,89 +270,144 @@ namespace Block
         }
 
 
-        public void DrawFigures(Random rand, Canvas currentCanvas)
+        public int DrawFigures(Random rand, Canvas currentCanvas)
         {
+            int flag = 0;
+
             switch (rand.Next() % 17)
             {
                 case 0:
-                    figure1 = new Figure(shape1);
-                    Redraw(shape1, currentCanvas);
+                    figure0 = new Figure(shape0);
+                    Redraw(figure0.shape, currentCanvas);
                     break;
                 case 1:
-                    figure2 = new Figure(shape2);
-                    Redraw(shape2, currentCanvas);
+                    figure1 = new Figure(shape1);
+                    Redraw(shape1, currentCanvas);
+                    flag = 1;
                     break;
                 case 2:
-                    figure3 = new Figure(shape3);
-                    Redraw(shape3, currentCanvas);
+                    figure2 = new Figure(shape2);
+                    Redraw(shape2, currentCanvas);
+                    flag = 2;
                     break;
                 case 3:
-                    figure4 = new Figure(shape4);
-                    Redraw(shape4, currentCanvas);
+                    figure3 = new Figure(shape3);
+                    Redraw(shape3, currentCanvas);
+                    flag = 3;
                     break;
                 case 4:
-                    figure5 = new Figure(shape5);
-                    Redraw(shape5, currentCanvas);
+                    figure4 = new Figure(shape4);
+                    Redraw(shape4, currentCanvas);
+                    flag = 4;
                     break;
                 case 5:
-                    figure6 = new Figure(shape6);
-                    Redraw(shape6, currentCanvas);
+                    figure5 = new Figure(shape5);
+                    Redraw(shape5, currentCanvas);
+                    flag = 5;
                     break;
                 case 6:
-                    figure7 = new Figure(shape7);
-                    Redraw(shape7, currentCanvas);
+                    figure6 = new Figure(shape6);
+                    Redraw(shape6, currentCanvas);
+                    flag = 6;
                     break;
                 case 7:
-                    figure8 = new Figure(shape8);
-                    Redraw(shape8, currentCanvas);
+                    figure7 = new Figure(shape7);
+                    Redraw(shape7, currentCanvas);
+                    flag = 7;
                     break;
                 case 8:
-                    figure9 = new Figure(shape9);
+                    figure8 = new Figure(shape8);
                     Redraw(shape9, currentCanvas);
+                    flag = 8;
                     break;
                 case 9:
-                    figure10 = new Figure(shape10);
-                    Redraw(shape10, currentCanvas);
+                    figure9 = new Figure(shape9);
+                    Redraw(shape9, currentCanvas);
+                    flag = 9;
                     break;
                 case 10:
-                    figure11 = new Figure(shape11);
-                    Redraw(shape11, currentCanvas);
+                    figure10 = new Figure(shape10);
+                    Redraw(shape10, currentCanvas);
+                    flag = 10;
                     break;
                 case 11:
-                    figure12 = new Figure(shape12);
-                    Redraw(shape12, currentCanvas);
+                    figure11 = new Figure(shape11);
+                    Redraw(shape11, currentCanvas);
+                    flag = 11;
                     break;
                 case 12:
-                    figure13 = new Figure(shape13);
-                    Redraw(shape13, currentCanvas);
+                    figure12 = new Figure(shape12);
+                    Redraw(shape12, currentCanvas);
+                    flag = 12;
                     break;
                 case 13:
-                    figure14 = new Figure(shape14);
-                    Redraw(shape14, currentCanvas);
+                    figure13 = new Figure(shape13);
+                    Redraw(shape13, currentCanvas);
+                    flag = 13;
                     break;
                 case 14:
-                    figure15 = new Figure(shape15);
-                    Redraw(shape15, currentCanvas);
+                    figure14 = new Figure(shape14);
+                    Redraw(shape14, currentCanvas);
+                    flag = 14;
                     break;
                 case 15:
-                    figure16 = new Figure(shape16);
-                    Redraw(shape16, currentCanvas);
+                    figure15 = new Figure(shape15);
+                    Redraw(shape15, currentCanvas);
+                    flag = 15;
                     break;
                 case 16:
-                    figure17 = new Figure(shape17);
-                    Redraw(shape17, currentCanvas);
+                    figure16 = new Figure(shape16);
+                    Redraw(shape16, currentCanvas);
                     break;
                 default:
                     break;
             }
+
+            return flag;
         }
+
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Random r = new Random();
-            DrawFigures(r, canvasUpper1);
-            DrawFigures(r, canvasUpper2);
+            currentFigureNumber1 = DrawFigures(r, canvasUpper1);
+            currentFigureNumber2 = DrawFigures(r, canvasUpper2);
             Start.IsEnabled = false;
+
+            canvasUpper1.MouseLeftButtonDown += CanvasUpper1_MouseLeftButtonDown;
+            canvasUpper2.MouseLeftButtonDown += CanvasUpper2_MouseLeftButtonDown;
         }
 
+        private void CanvasUpper1_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Redraw(figuresArray[currentFigureNumber1].shape, canvasMove);
+            mousePosition = Mouse.GetPosition(canvasMain);
+           
+        }
+
+        private void CanvasUpper2_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Redraw(figuresArray[currentFigureNumber2].shape, canvasMove);
+            mousePosition = Mouse.GetPosition(canvasMain);
+        }
+
+
+
+
+        //private void Grid_MouseUp(System.Object sender, System.Windows.Input.MouseButtonEventArgs e)
+        //{
+        //    if (e.ChangedButton == MouseButton.Left)
+        //    {
+        //        Redraw(figuresArray[currentFigureNumber1].shape, canvasMove);
+        //    }
+        //}
+
+        //private void canvasMove_MouseMove(object sender, MouseEventArgs e)
+        //{
+        //    if (selected == true)
+        //    {
+        //        canvasMove. = e.Location;
+        //    }
+        //}
     }
 }
