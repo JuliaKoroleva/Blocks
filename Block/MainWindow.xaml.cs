@@ -374,21 +374,22 @@ namespace Block
             currentFigureNumber2 = DrawFigures(r, canvasUpper2);
             Start.IsEnabled = false;
 
-            canvasUpper1.MouseLeftButtonDown += CanvasUpper1_MouseLeftButtonDown;
-            canvasUpper2.MouseLeftButtonDown += CanvasUpper2_MouseLeftButtonDown;
+            canvasMove1.MouseLeftButtonDown += CanvasMove1_MouseLeftButtonDown; //Нажимаем на левую фигуру
+            canvasMove2.MouseLeftButtonDown += CanvasMove2_MouseLeftButtonDown; //Нажимаем на правую фигуру
         }
 
-        private void CanvasUpper1_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void CanvasMove1_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Redraw(figuresArray[currentFigureNumber1].shape, canvasMove);
+            Redraw(figuresArray[currentFigureNumber1].shape, canvasMove1); //Рисуем фигуру, которую будет перемещать
             mousePosition = Mouse.GetPosition(canvasMain);
-           
+            //НАДО ДВИГАТЬ КАНВАС canvasMove1
         }
 
-        private void CanvasUpper2_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void CanvasMove2_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Redraw(figuresArray[currentFigureNumber2].shape, canvasMove);
+            Redraw(figuresArray[currentFigureNumber2].shape, canvasMove2); //Рисуем фигуру, которую будет перемещать
             mousePosition = Mouse.GetPosition(canvasMain);
+            //НАДО ДВИГАТЬ КАНВАС canvasMove2
         }
 
 
