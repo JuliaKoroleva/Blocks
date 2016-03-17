@@ -392,16 +392,19 @@ namespace Block
         {
             Redraw(figuresArray[currentFigureNumber1].shape, canvasMove1); //Рисуем фигуру, которую будет перемещать
             mousePosition = Mouse.GetPosition(canvasMain);
-
             //НАДО ДВИГАТЬ КАНВАС canvasMove1
         }
 
         private void canvasMove1_MouseMove(object sender, MouseEventArgs e)
         {
-            e.MouseDevice.Capture(canvasMove1);
-            var pos = e.GetPosition(canvasMain);
-            Canvas.SetLeft(canvasMove1, pos.X);
-            Canvas.SetTop(canvasMove1, pos.Y);
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                e.MouseDevice.Capture(canvasMove1);
+                var pos = e.GetPosition(canvasMain);
+                Canvas.SetLeft(canvasMove1, pos.X);
+                Canvas.SetTop(canvasMove1, pos.Y);
+            }
+            
         }
 
         private void CanvasMove2_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -413,18 +416,21 @@ namespace Block
 
         private void canvasMove2_MouseMove(object sender, MouseEventArgs e)
         {
-            e.MouseDevice.Capture(canvasMove2);
-            var pos = e.GetPosition(canvasMain);
-            Canvas.SetLeft(canvasMove2, pos.X);
-            Canvas.SetTop(canvasMove2, pos.Y);
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                e.MouseDevice.Capture(canvasMove2);
+                var pos = e.GetPosition(canvasMain);
+                Canvas.SetLeft(canvasMove2, pos.X);
+                Canvas.SetTop(canvasMove2, pos.Y);
+            }
         }
 
-        private void canvasMain_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void canvasMain_MouseUp(object sender, MouseButtonEventArgs e)
         {
             e.MouseDevice.Capture(null);
             var pos = e.GetPosition(canvasMain);
-            Canvas.SetLeft(canvasMove1, pos.X);
-            Canvas.SetTop(canvasMove1, pos.Y);
+            Canvas.SetLeft(canvasMain, pos.X);
+            Canvas.SetTop(canvasMain, pos.Y);
             canvasMain.Children.Add(canvasMove1);
         }
 
