@@ -135,8 +135,6 @@ namespace Block
         public MainWindow()
         {
             InitializeComponent();
-            //canvasMove1.MouseLeftButtonDown += CanvasMove1_MouseLeftButtonDown; //Нажимаем на левую фигуру
-            //canvasMove2.MouseLeftButtonDown += CanvasMove2_MouseLeftButtonDown; //Нажимаем на правую фигуру
 
             for (int i = 0; i < N; i++) //Создаем массив-схему основного поля
             {
@@ -390,9 +388,9 @@ namespace Block
 
         private void CanvasMove1_MouseLeftButtonDown(object sender, MouseEventArgs e)
         {
-            Redraw(figuresArray[currentFigureNumber1].shape, canvasMove1); //Рисуем фигуру, которую будет перемещать
+            //Рисуем фигуру, которую будет перемещать
+            Redraw(figuresArray[currentFigureNumber1].shape, canvasMove1);
             mousePosition = Mouse.GetPosition(canvasMain);
-            //НАДО ДВИГАТЬ КАНВАС canvasMove1
         }
 
         private void canvasMove1_MouseMove(object sender, MouseEventArgs e)
@@ -411,7 +409,6 @@ namespace Block
         {
             Redraw(figuresArray[currentFigureNumber2].shape, canvasMove2); //Рисуем фигуру, которую будет перемещать
             mousePosition = Mouse.GetPosition(canvasMain);
-            //НАДО ДВИГАТЬ КАНВАС canvasMove2
         }
 
         private void canvasMove2_MouseMove(object sender, MouseEventArgs e)
@@ -432,24 +429,7 @@ namespace Block
             Canvas.SetLeft(canvasMain, pos.X);
             Canvas.SetTop(canvasMain, pos.Y);
             canvasMain.Children.Add(canvasMove1);
+            canvasMain.IsEnabled = false;
         }
-
-
-
-        //private void Grid_MouseUp(System.Object sender, System.Windows.Input.MouseButtonEventArgs e)
-        //{
-        //    if (e.ChangedButton == MouseButton.Left)
-        //    {
-        //        Redraw(figuresArray[currentFigureNumber1].shape, canvasMove);
-        //    }
-        //}
-
-        //private void canvasMove_MouseMove(object sender, MouseEventArgs e)
-        //{
-        //    if (selected == true)
-        //    {
-        //        canvasMove. = e.Location;
-        //    }
-        //}
     }
 }
