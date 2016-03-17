@@ -294,7 +294,7 @@ namespace Block
         {
             mousePosition = Mouse.GetPosition(currentCanvas);
 
-            if ((mousePosition.X > 0) && (mousePosition.Y > 0) && (mousePosition.X < canvasMove1.Width) && (mousePosition.Y < canvasMove1.Height))
+            if ((mousePosition.X > 0) && (mousePosition.Y > 0) && (mousePosition.X < canvasUpper1.Width) && (mousePosition.Y < canvasUpper1.Height))
                 return true;
 
             else
@@ -323,46 +323,55 @@ namespace Block
             Start.IsEnabled = false;
         }
 
-        private void CanvasMove1_MouseLeftButtonDown(object sender, MouseEventArgs e)
+        private void CanvasUpper1_MouseLeftButtonDown(object sender, MouseEventArgs e)
         {
-            Redraw(figuresArray[currentFigureNumber1].shape, canvasMove1); //Рисуем фигуру, которую будет перемещать
-            mousePosition = Mouse.GetPosition(canvasMain);
-            shift.X = mousePosition.X - Canvas.GetLeft(canvasMove1); //Сдвиг от левого края канваса
-            shift.Y = mousePosition.Y - Canvas.GetTop(canvasMove1); //Сдвиг от верхнего края канваса
+            if (Is_Inside_Canvas(canvasUpper1))
+            {
+                //Redraw(figuresArray[currentFigureNumber1].shape, canvasUpper1); //Рисуем фигуру, которую будет перемещать
+                mousePosition = Mouse.GetPosition(canvasUpper1);
+                Console.WriteLine(mousePosition);
+                shift.X = mousePosition.X - Canvas.GetLeft(canvasUpper1); //Сдвиг от левого края канваса
+                shift.Y = mousePosition.Y - Canvas.GetTop(canvasUpper1); //Сдвиг от верхнего края канваса
+            }
         }
 
-        private void canvasMove1_MouseMove(object sender, MouseEventArgs e)
+        private void canvasUpper1_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-                if (Is_Inside_Canvas(canvasMove1))
+                if (Is_Inside_Canvas(canvasUpper1) || true)
                 {
-                    e.MouseDevice.Capture(canvasMove1);
+                    e.MouseDevice.Capture(canvasUpper1);
                     var position = e.GetPosition(canvasMain);
-                    Canvas.SetLeft(canvasMove1, position.X - shift.X);
-                    Canvas.SetTop(canvasMove1, position.Y - shift.Y);
+                    Canvas.SetLeft(canvasUpper1, position.X - shift.X);
+                    Canvas.SetTop(canvasUpper1, position.Y - shift.Y);
+                    Console.WriteLine(Canvas.GetLeft(canvasUpper1));
+                    Console.WriteLine(Canvas.GetTop(canvasUpper1));
                 }
             }
         }
 
-        private void CanvasMove2_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void CanvasUpper2_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Redraw(figuresArray[currentFigureNumber2].shape, canvasMove2); //Рисуем фигуру, которую будет перемещать
-            mousePosition = Mouse.GetPosition(canvasMain);
-            shift.X = mousePosition.X - Canvas.GetLeft(canvasMove2); //Сдвиг от левого края канваса
-            shift.Y = mousePosition.Y - Canvas.GetTop(canvasMove2); //Сдвиг от верхнего края канваса
+            if (Is_Inside_Canvas(canvasUpper2))
+            { 
+                //Redraw(figuresArray[currentFigureNumber2].shape, canvasMove2); //Рисуем фигуру, которую будет перемещать
+                mousePosition = Mouse.GetPosition(canvasUpper2);
+                shift.X = mousePosition.X - Canvas.GetLeft(canvasUpper2); //Сдвиг от левого края канваса
+                shift.Y = mousePosition.Y - Canvas.GetTop(canvasUpper2); //Сдвиг от верхнего края канваса
+            }
         }
 
-        private void canvasMove2_MouseMove(object sender, MouseEventArgs e)
+        private void canvasUpper2_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-                if (Is_Inside_Canvas(canvasMove2))
+                if (Is_Inside_Canvas(canvasUpper2))
                 {
-                    e.MouseDevice.Capture(canvasMove2);
+                    e.MouseDevice.Capture(canvasUpper2);
                     var position = e.GetPosition(canvasMain);
-                    Canvas.SetLeft(canvasMove2, position.X - shift.X);
-                    Canvas.SetTop(canvasMove2, position.Y - shift.Y);
+                    Canvas.SetLeft(canvasUpper2, position.X - shift.X);
+                    Canvas.SetTop(canvasUpper2, position.Y - shift.Y);
                 }
             }
         }
@@ -371,9 +380,9 @@ namespace Block
         {
             e.MouseDevice.Capture(null);
             var position = e.GetPosition(canvasMain);
-            Canvas.SetLeft(canvasMain, position.X);
-            Canvas.SetTop(canvasMain, position.Y);
-            canvasMain.Children.Add(canvasMove1);
+            //Canvas.SetLeft(canvasMain, position.X);
+            //Canvas.SetTop(canvasMain, position.Y);
+            //canvasMain.Children.Add(canvasMove1);
 
 
         }

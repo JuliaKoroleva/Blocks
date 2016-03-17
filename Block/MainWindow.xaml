@@ -9,11 +9,8 @@
             <Label Content="Score" Height="37" x:Name="Score" FontSize="24" FontWeight="Bold"/>
         </StackPanel>
         <WrapPanel Height="560" VerticalAlignment="Top" Width="400">
-            <Canvas x:Name="canvasUpper1" Height="160" Width="200" HorizontalAlignment="Left">
-                <Canvas x:Name="canvasMove1" MouseLeftButtonDown="CanvasMove1_MouseLeftButtonDown" MouseMove="canvasMove1_MouseMove" Background="Transparent" Height="160" Width="200" />
-            </Canvas>
-            <Canvas x:Name="canvasUpper2" Height="160" Width="200" HorizontalAlignment="Right">
-                <Canvas x:Name="canvasMove2" MouseLeftButtonDown="CanvasMove2_MouseLeftButtonDown" MouseMove="canvasMove2_MouseMove" Background="Transparent" Height="160" Width="200"/>
+            <Canvas x:Name="canvasUpper1" Height="160" Width="200" MouseLeftButtonDown="CanvasUpper1_MouseLeftButtonDown" MouseMove="canvasUpper1_MouseMove"/>
+            <Canvas x:Name="canvasUpper2" Height="160" Width="200" MouseLeftButtonDown="CanvasUpper2_MouseLeftButtonDown" MouseMove="canvasUpper2_MouseMove">
             </Canvas>
             <Border Grid.ColumnSpan="10" Grid.RowSpan="10" BorderThickness="2" BorderBrush="#7F000000" VerticalAlignment="Bottom">
                 <Canvas x:Name="canvasMain" Height="400" Width="420" VerticalAlignment="Bottom" MouseUp="canvasMain_MouseUp"/>
