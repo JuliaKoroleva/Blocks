@@ -33,6 +33,7 @@ namespace Block
 
         bool selected = false;
         Point mousePosition;
+        Point shift;
 
         Figure[] figuresArray;
 
@@ -43,88 +44,88 @@ namespace Block
         Figure figure12; Figure figure13; Figure figure14;
         Figure figure15; Figure figure16;
 
-        int[,] shape0 = new int[M, M] { { 0, 0, 0, 0 }, 
-                                            { 0, 1, 0, 0 }, 
-                                            { 0, 0, 0, 0 }, 
+        int[,] shape0 = new int[M, M] { { 0, 0, 0, 0 },
+                                            { 0, 1, 0, 0 },
+                                            { 0, 0, 0, 0 },
                                             { 0, 0, 0, 0 } };
-        int[,] shape1 = new int[M, M] { { 0, 0, 0, 0 }, 
-                                            { 0, 1, 1, 0 }, 
-                                            { 0, 0, 0, 0 }, 
-                                            { 0, 0, 0, 0 } };
-
-        int[,] shape2 = new int[M, M] { { 0, 0, 0, 0 }, 
-                                            { 0, 1, 0, 0 }, 
-                                            { 0, 1, 0, 0 }, 
+        int[,] shape1 = new int[M, M] { { 0, 0, 0, 0 },
+                                            { 0, 1, 1, 0 },
+                                            { 0, 0, 0, 0 },
                                             { 0, 0, 0, 0 } };
 
-        int[,] shape3 = new int[M, M] { { 0, 0, 0, 0 }, 
-                                            { 0, 1, 1, 0 }, 
-                                            { 0, 1, 0, 0 }, 
+        int[,] shape2 = new int[M, M] { { 0, 0, 0, 0 },
+                                            { 0, 1, 0, 0 },
+                                            { 0, 1, 0, 0 },
                                             { 0, 0, 0, 0 } };
 
-        int[,] shape4 = new int[M, M] { { 0, 0, 0, 0 }, 
-                                            { 0, 1, 1, 0 }, 
-                                            { 0, 0, 1, 0 }, 
+        int[,] shape3 = new int[M, M] { { 0, 0, 0, 0 },
+                                            { 0, 1, 1, 0 },
+                                            { 0, 1, 0, 0 },
                                             { 0, 0, 0, 0 } };
 
-        int[,] shape5 = new int[M, M] { { 0, 0, 0, 0 }, 
-                                            { 0, 0, 1, 0 }, 
-                                            { 0, 1, 1, 0 }, 
+        int[,] shape4 = new int[M, M] { { 0, 0, 0, 0 },
+                                            { 0, 1, 1, 0 },
+                                            { 0, 0, 1, 0 },
                                             { 0, 0, 0, 0 } };
 
-        int[,] shape6 = new int[M, M] { { 0, 0, 0, 0 }, 
-                                            { 0, 1, 0, 0 }, 
-                                            { 0, 1, 1, 0 }, 
+        int[,] shape5 = new int[M, M] { { 0, 0, 0, 0 },
+                                            { 0, 0, 1, 0 },
+                                            { 0, 1, 1, 0 },
                                             { 0, 0, 0, 0 } };
 
-        int[,] shape7 = new int[M, M] { { 0, 0, 0, 0 }, 
-                                            { 0, 1, 1, 0 }, 
-                                            { 0, 1, 1, 0 }, 
+        int[,] shape6 = new int[M, M] { { 0, 0, 0, 0 },
+                                            { 0, 1, 0, 0 },
+                                            { 0, 1, 1, 0 },
                                             { 0, 0, 0, 0 } };
 
-        int[,] shape8 = new int[M, M] { { 0, 1, 0, 0 }, 
-                                            { 0, 1, 0, 0 }, 
-                                            { 0, 1, 0, 0 }, 
+        int[,] shape7 = new int[M, M] { { 0, 0, 0, 0 },
+                                            { 0, 1, 1, 0 },
+                                            { 0, 1, 1, 0 },
                                             { 0, 0, 0, 0 } };
 
-        int[,] shape9 = new int[M, M] { { 0, 0, 0, 0 }, 
-                                             { 1, 1, 1, 0 }, 
-                                             { 0, 0, 0, 0 }, 
+        int[,] shape8 = new int[M, M] { { 0, 1, 0, 0 },
+                                            { 0, 1, 0, 0 },
+                                            { 0, 1, 0, 0 },
+                                            { 0, 0, 0, 0 } };
+
+        int[,] shape9 = new int[M, M] { { 0, 0, 0, 0 },
+                                             { 1, 1, 1, 0 },
+                                             { 0, 0, 0, 0 },
                                              { 0, 0, 0, 0 } };
 
-        int[,] shape10 = new int[M, M] { { 1, 1, 1, 0 }, 
-                                             { 1, 0, 0, 0 }, 
-                                             { 1, 0, 0, 0 }, 
+        int[,] shape10 = new int[M, M] { { 1, 1, 1, 0 },
+                                             { 1, 0, 0, 0 },
+                                             { 1, 0, 0, 0 },
                                              { 0, 0, 0, 0 } };
 
-        int[,] shape11 = new int[M, M] { { 1, 1, 1, 0 }, 
-                                             { 0, 0, 1, 0 }, 
-                                             { 0, 0, 1, 0 }, 
+        int[,] shape11 = new int[M, M] { { 1, 1, 1, 0 },
+                                             { 0, 0, 1, 0 },
+                                             { 0, 0, 1, 0 },
                                              { 0, 0, 1, 0 } };
 
-        int[,] shape12 = new int[M, M] { { 0, 0, 1, 0 }, 
-                                             { 0, 0, 1, 0 }, 
-                                             { 1, 1, 1, 0 }, 
+        int[,] shape12 = new int[M, M] { { 0, 0, 1, 0 },
+                                             { 0, 0, 1, 0 },
+                                             { 1, 1, 1, 0 },
                                              { 0, 0, 0, 0 } };
 
         int[,] shape13 = new int[M, M] { { 1, 0, 0, 0 },
-                                             { 1, 0, 0, 0 }, 
-                                             { 1, 1, 1, 0 }, 
+                                             { 1, 0, 0, 0 },
+                                             { 1, 1, 1, 0 },
                                              { 0, 0, 0, 0 } };
 
-        int[,] shape14 = new int[M, M] { { 0, 1, 0, 0 }, 
-                                             { 0, 1, 0, 0 }, 
-                                             { 0, 1, 0, 0 }, 
+        int[,] shape14 = new int[M, M] { { 0, 1, 0, 0 },
+                                             { 0, 1, 0, 0 },
+                                             { 0, 1, 0, 0 },
                                              { 0, 1, 0, 0 } };
 
-        int[,] shape15 = new int[M, M] { { 0, 0, 0, 0 }, 
-                                             { 1, 1, 1, 1 }, 
-                                             { 0, 0, 0, 0 }, 
+        int[,] shape15 = new int[M, M] { { 0, 0, 0, 0 },
+                                             { 1, 1, 1, 1 },
+                                             { 0, 0, 0, 0 },
                                              { 0, 0, 0, 0 } };
 
-        int[,] shape16 = new int[M, M] { { 1, 1, 1, 0 }, 
-                                             { 1, 1, 1, 0 }, 
-                                             { 1, 1, 1, 0 }, 
+        int[,] shape16 = new int[M, M] { { 1, 1, 1, 0 },
+                                             { 1, 1, 1, 0 },
+                                             { 1, 1, 1, 0 },
                                              { 0, 0, 0, 0 } };
 
         double cellWidth = 40.0;
@@ -154,20 +155,16 @@ namespace Block
                 }
             }
 
-            figure0 = new Figure(shape0); figure0.shape = shape0; figure1 = new Figure(shape1); figure1.shape = shape1;
-            figure2 = new Figure(shape2); figure2.shape = shape2; figure3 = new Figure(shape3); figure3.shape = shape3;
-            figure4 = new Figure(shape4); figure4.shape = shape4; figure5 = new Figure(shape5); figure5.shape = shape5;
-            figure6 = new Figure(shape6); figure6.shape = shape6; figure7 = new Figure(shape7); figure7.shape = shape7;
-            figure8 = new Figure(shape8); figure8.shape = shape8; figure9 = new Figure(shape9); figure9.shape = shape9;
-            figure10 = new Figure(shape10); figure10.shape = shape10; figure11 = new Figure(shape11); figure11.shape = shape11;
-            figure12 = new Figure(shape12); figure12.shape = shape12; figure13 = new Figure(shape13); figure13.shape = shape13;
-            figure14 = new Figure(shape14); figure14.shape = shape14; figure15 = new Figure(shape15); figure15.shape = shape15;
-            figure16 = new Figure(shape16); figure16.shape = shape16;
+            figure0 = new Figure(shape0); figure1 = new Figure(shape1); figure2 = new Figure(shape2);
+            figure3 = new Figure(shape3); figure4 = new Figure(shape4); figure5 = new Figure(shape5);
+            figure6 = new Figure(shape6); figure7 = new Figure(shape7); figure8 = new Figure(shape8);
+            figure9 = new Figure(shape9); figure10 = new Figure(shape10); figure11 = new Figure(shape11);
+            figure12 = new Figure(shape12); figure13 = new Figure(shape13); figure14 = new Figure(shape14);
+            figure15 = new Figure(shape15); figure16 = new Figure(shape16);
 
-            figuresArray = new Figure[17] {figure0, figure1, figure2, figure3, figure4,
-                                           figure5, figure6, figure7, figure8, figure9,
-                                           figure10, figure11, figure12, figure13, figure14,
-                                           figure15, figure16};
+            figuresArray = new Figure[17] {figure0, figure1, figure2, figure3, figure4, figure5, figure6,
+                                           figure7, figure8, figure9, figure10, figure11, figure12, figure13,
+                                           figure14, figure15, figure16};
 
             canvasMain = Redraw(mainField, canvasMain);
             canvasUpper1 = Redraw(shapeField, canvasUpper1);
@@ -184,32 +181,41 @@ namespace Block
                 for (int j = 0; j < columns; j++)
                 {
                     Rectangle rect = new Rectangle();
-                    rect.Stroke = new SolidColorBrush(Colors.Gray);
+
+                    if (field.GetLength(0) == N)
+                        rect.Stroke = new SolidColorBrush(Colors.Gray);
                     rect.Width = cellWidth;
                     rect.Height = cellHeight;
 
                     if (field[i, j] != 0)
                     {
                         Random rand = new Random();
+
                         switch (rand.Next() % 6)
                         {
                             case 0:
                                 rect.Fill = new SolidColorBrush(Colors.LightCoral);
+                                rect.Stroke = new SolidColorBrush(Colors.Gray);
                                 break;
                             case 1:
                                 rect.Fill = new SolidColorBrush(Colors.LightGreen);
+                                rect.Stroke = new SolidColorBrush(Colors.Gray);
                                 break;
                             case 2:
                                 rect.Fill = new SolidColorBrush(Colors.LightSkyBlue);
+                                rect.Stroke = new SolidColorBrush(Colors.Gray);
                                 break;
                             case 3:
                                 rect.Fill = new SolidColorBrush(Colors.Yellow);
+                                rect.Stroke = new SolidColorBrush(Colors.Gray);
                                 break;
                             case 4:
                                 rect.Fill = new SolidColorBrush(Colors.Plum);
+                                rect.Stroke = new SolidColorBrush(Colors.Gray);
                                 break;
                             case 5:
                                 rect.Fill = new SolidColorBrush(Colors.LightPink);
+                                rect.Stroke = new SolidColorBrush(Colors.Gray);
                                 break;
                             default:
                                 break;
@@ -284,97 +290,26 @@ namespace Block
         }
 
 
+        public bool Is_Inside_Canvas(Canvas currentCanvas)
+        {
+            mousePosition = Mouse.GetPosition(currentCanvas);
+
+            if ((mousePosition.X > 0) && (mousePosition.Y > 0) && (mousePosition.X < canvasMove1.Width) && (mousePosition.Y < canvasMove1.Height))
+                return true;
+
+            else
+                return false;
+        }
+
+
         public int DrawFigures(Random rand, Canvas currentCanvas)
         {
             int flag = 0;
 
-            switch (rand.Next() % 17)
-            {
-                case 0:
-                    Redraw(figure0.shape, currentCanvas);
-                    break;
-                case 1:
-                    figure1 = new Figure(shape1);
-                    Redraw(shape1, currentCanvas);
-                    flag = 1;
-                    break;
-                case 2:
-                    figure2 = new Figure(shape2);
-                    Redraw(shape2, currentCanvas);
-                    flag = 2;
-                    break;
-                case 3:
-                    figure3 = new Figure(shape3);
-                    Redraw(shape3, currentCanvas);
-                    flag = 3;
-                    break;
-                case 4:
-                    figure4 = new Figure(shape4);
-                    Redraw(shape4, currentCanvas);
-                    flag = 4;
-                    break;
-                case 5:
-                    figure5 = new Figure(shape5);
-                    Redraw(shape5, currentCanvas);
-                    flag = 5;
-                    break;
-                case 6:
-                    figure6 = new Figure(shape6);
-                    Redraw(shape6, currentCanvas);
-                    flag = 6;
-                    break;
-                case 7:
-                    figure7 = new Figure(shape7);
-                    Redraw(shape7, currentCanvas);
-                    flag = 7;
-                    break;
-                case 8:
-                    figure8 = new Figure(shape8);
-                    Redraw(shape9, currentCanvas);
-                    flag = 8;
-                    break;
-                case 9:
-                    figure9 = new Figure(shape9);
-                    Redraw(shape9, currentCanvas);
-                    flag = 9;
-                    break;
-                case 10:
-                    figure10 = new Figure(shape10);
-                    Redraw(shape10, currentCanvas);
-                    flag = 10;
-                    break;
-                case 11:
-                    figure11 = new Figure(shape11);
-                    Redraw(shape11, currentCanvas);
-                    flag = 11;
-                    break;
-                case 12:
-                    figure12 = new Figure(shape12);
-                    Redraw(shape12, currentCanvas);
-                    flag = 12;
-                    break;
-                case 13:
-                    figure13 = new Figure(shape13);
-                    Redraw(shape13, currentCanvas);
-                    flag = 13;
-                    break;
-                case 14:
-                    figure14 = new Figure(shape14);
-                    Redraw(shape14, currentCanvas);
-                    flag = 14;
-                    break;
-                case 15:
-                    figure15 = new Figure(shape15);
-                    Redraw(shape15, currentCanvas);
-                    flag = 15;
-                    break;
-                case 16:
-                    figure16 = new Figure(shape16);
-                    Redraw(shape16, currentCanvas);
-                    break;
-                default:
-                    break;
-            }
+            var randValue = rand.Next() % 17;
+
+            Redraw(figuresArray[randValue].shape, currentCanvas);
+            flag = randValue;
 
             return flag;
         }
@@ -392,64 +327,55 @@ namespace Block
         {
             Redraw(figuresArray[currentFigureNumber1].shape, canvasMove1); //Рисуем фигуру, которую будет перемещать
             mousePosition = Mouse.GetPosition(canvasMain);
-            //НАДО ДВИГАТЬ КАНВАС canvasMove1
+            shift.X = mousePosition.X - Canvas.GetLeft(canvasMove1); //Сдвиг от левого края канваса
+            shift.Y = mousePosition.Y - Canvas.GetTop(canvasMove1); //Сдвиг от верхнего края канваса
         }
 
         private void canvasMove1_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-                e.MouseDevice.Capture(canvasMove1);
-                var pos = e.GetPosition(canvasMain);
-                Canvas.SetLeft(canvasMove1, pos.X);
-                Canvas.SetTop(canvasMove1, pos.Y);
+                if (Is_Inside_Canvas(canvasMove1))
+                {
+                    e.MouseDevice.Capture(canvasMove1);
+                    var position = e.GetPosition(canvasMain);
+                    Canvas.SetLeft(canvasMove1, position.X - shift.X);
+                    Canvas.SetTop(canvasMove1, position.Y - shift.Y);
+                }
             }
-            
         }
 
         private void CanvasMove2_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Redraw(figuresArray[currentFigureNumber2].shape, canvasMove2); //Рисуем фигуру, которую будет перемещать
             mousePosition = Mouse.GetPosition(canvasMain);
-            //НАДО ДВИГАТЬ КАНВАС canvasMove2
+            shift.X = mousePosition.X - Canvas.GetLeft(canvasMove2); //Сдвиг от левого края канваса
+            shift.Y = mousePosition.Y - Canvas.GetTop(canvasMove2); //Сдвиг от верхнего края канваса
         }
 
         private void canvasMove2_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-                e.MouseDevice.Capture(canvasMove2);
-                var pos = e.GetPosition(canvasMain);
-                Canvas.SetLeft(canvasMove2, pos.X);
-                Canvas.SetTop(canvasMove2, pos.Y);
+                if (Is_Inside_Canvas(canvasMove2))
+                {
+                    e.MouseDevice.Capture(canvasMove2);
+                    var position = e.GetPosition(canvasMain);
+                    Canvas.SetLeft(canvasMove2, position.X - shift.X);
+                    Canvas.SetTop(canvasMove2, position.Y - shift.Y);
+                }
             }
         }
 
         private void canvasMain_MouseUp(object sender, MouseButtonEventArgs e)
         {
             e.MouseDevice.Capture(null);
-            var pos = e.GetPosition(canvasMain);
-            Canvas.SetLeft(canvasMain, pos.X);
-            Canvas.SetTop(canvasMain, pos.Y);
+            var position = e.GetPosition(canvasMain);
+            Canvas.SetLeft(canvasMain, position.X);
+            Canvas.SetTop(canvasMain, position.Y);
             canvasMain.Children.Add(canvasMove1);
+
+
         }
-
-
-
-        //private void Grid_MouseUp(System.Object sender, System.Windows.Input.MouseButtonEventArgs e)
-        //{
-        //    if (e.ChangedButton == MouseButton.Left)
-        //    {
-        //        Redraw(figuresArray[currentFigureNumber1].shape, canvasMove);
-        //    }
-        //}
-
-        //private void canvasMove_MouseMove(object sender, MouseEventArgs e)
-        //{
-        //    if (selected == true)
-        //    {
-        //        canvasMove. = e.Location;
-        //    }
-        //}
     }
 }
