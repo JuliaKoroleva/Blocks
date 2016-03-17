@@ -130,11 +130,13 @@ namespace Block
         double cellWidth = 40.0;
         double cellHeight = 40.0;
 
+        Nullable<Point> dragStart = null;
+
         public MainWindow()
         {
             InitializeComponent();
-            canvasMove1.MouseLeftButtonDown += CanvasMove1_MouseLeftButtonDown; //Нажимаем на левую фигуру
-            canvasMove2.MouseLeftButtonDown += CanvasMove2_MouseLeftButtonDown; //Нажимаем на правую фигуру
+            //canvasMove1.MouseLeftButtonDown += CanvasMove1_MouseLeftButtonDown; //Нажимаем на левую фигуру
+            //canvasMove2.MouseLeftButtonDown += CanvasMove2_MouseLeftButtonDown; //Нажимаем на правую фигуру
 
             for (int i = 0; i < N; i++) //Создаем массив-схему основного поля
             {
@@ -152,14 +154,14 @@ namespace Block
                 }
             }
 
-            figure0 = new Figure(shape0);   figure0.shape = shape0;      figure1 = new Figure(shape1);   figure1.shape = shape1;
-            figure2 = new Figure(shape2);   figure2.shape = shape2;      figure3 = new Figure(shape3);   figure3.shape = shape3;
-            figure4 = new Figure(shape4);   figure4.shape = shape4;      figure5 = new Figure(shape5);   figure5.shape = shape5;
-            figure6 = new Figure(shape6);   figure6.shape = shape6;      figure7 = new Figure(shape7);   figure7.shape = shape7;
-            figure8 = new Figure(shape8);   figure8.shape = shape8;      figure9 = new Figure(shape9);   figure9.shape = shape9;
-            figure10 = new Figure(shape10); figure10.shape = shape10;      figure11 = new Figure(shape11); figure11.shape = shape11;
-            figure12 = new Figure(shape12); figure12.shape = shape12;      figure13 = new Figure(shape13); figure13.shape = shape13;
-            figure14 = new Figure(shape14); figure14.shape = shape14;      figure15 = new Figure(shape15); figure15.shape = shape15;
+            figure0 = new Figure(shape0); figure0.shape = shape0; figure1 = new Figure(shape1); figure1.shape = shape1;
+            figure2 = new Figure(shape2); figure2.shape = shape2; figure3 = new Figure(shape3); figure3.shape = shape3;
+            figure4 = new Figure(shape4); figure4.shape = shape4; figure5 = new Figure(shape5); figure5.shape = shape5;
+            figure6 = new Figure(shape6); figure6.shape = shape6; figure7 = new Figure(shape7); figure7.shape = shape7;
+            figure8 = new Figure(shape8); figure8.shape = shape8; figure9 = new Figure(shape9); figure9.shape = shape9;
+            figure10 = new Figure(shape10); figure10.shape = shape10; figure11 = new Figure(shape11); figure11.shape = shape11;
+            figure12 = new Figure(shape12); figure12.shape = shape12; figure13 = new Figure(shape13); figure13.shape = shape13;
+            figure14 = new Figure(shape14); figure14.shape = shape14; figure15 = new Figure(shape15); figure15.shape = shape15;
             figure16 = new Figure(shape16); figure16.shape = shape16;
 
             figuresArray = new Figure[17] {figure0, figure1, figure2, figure3, figure4,
@@ -386,29 +388,45 @@ namespace Block
             Start.IsEnabled = false;
         }
 
-        private void CanvasMove1_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void CanvasMove1_MouseLeftButtonDown(object sender, MouseEventArgs e)
         {
             Redraw(figuresArray[currentFigureNumber1].shape, canvasMove1); //Рисуем фигуру, которую будет перемещать
             mousePosition = Mouse.GetPosition(canvasMain);
-            Canvas c = (Canvas)sender;
-            DragDrop.DoDragDrop(canvasMove1, c, DragDropEffects.Copy);
+
             //НАДО ДВИГАТЬ КАНВАС canvasMove1
+        }
+
+        private void canvasMove1_MouseMove(object sender, MouseEventArgs e)
+        {
+            e.MouseDevice.Capture(canvasMove1);
+            var pos = e.GetPosition(canvasMain);
+            Canvas.SetLeft(canvasMove1, pos.X);
+            Canvas.SetTop(canvasMove1, pos.Y);
         }
 
         private void CanvasMove2_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Redraw(figuresArray[currentFigureNumber2].shape, canvasMove2); //Рисуем фигуру, которую будет перемещать
             mousePosition = Mouse.GetPosition(canvasMain);
-            Canvas c = (Canvas)sender;
-            DragDrop.DoDragDrop(canvasMove2,c, DragDropEffects.Copy);
             //НАДО ДВИГАТЬ КАНВАС canvasMove2
         }
-        private void Canvas_Drop(object sender, DragEventArgs e)
+
+        private void canvasMove2_MouseMove(object sender, MouseEventArgs e)
         {
-            Canvas elem = e.Data.GetData(typeof(Canvas)) as Canvas;
-            canvasMain.Children.Add(elem);
+            e.MouseDevice.Capture(canvasMove2);
+            var pos = e.GetPosition(canvasMain);
+            Canvas.SetLeft(canvasMove2, pos.X);
+            Canvas.SetTop(canvasMove2, pos.Y);
         }
 
+        private void canvasMain_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            e.MouseDevice.Capture(null);
+            var pos = e.GetPosition(canvasMain);
+            Canvas.SetLeft(canvasMove1, pos.X);
+            Canvas.SetTop(canvasMove1, pos.Y);
+            canvasMain.Children.Add(canvasMove1);
+        }
 
 
 
