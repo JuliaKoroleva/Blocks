@@ -131,8 +131,6 @@ namespace Block
         double cellWidth = 40.0;
         double cellHeight = 40.0;
 
-        Nullable<Point> dragStart = null;
-
         public MainWindow()
         {
             InitializeComponent();
@@ -181,7 +179,7 @@ namespace Block
                     Rectangle rect = new Rectangle();
 
                     if (field.GetLength(0) == N)
-                    rect.Stroke = new SolidColorBrush(Colors.Gray);
+                        rect.Stroke = new SolidColorBrush(Colors.Gray);
                     rect.Width = cellWidth;
                     rect.Height = cellHeight;
 
@@ -321,17 +319,17 @@ namespace Block
             Start.IsEnabled = false;
         }
 
-         
-           
 
         private void canvasUpper1_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        { 
-            if (Is_Inside_Canvas(canvasUpper1)==true)
         {
-            // Redraw(figuresArray[currentFigureNumber1].shape, canvasUpper1); //Рисуем фигуру, которую будет перемещать
-            mousePosition = Mouse.GetPosition(canvasMain);
-            //НАДО ДВИГАТЬ КАНВАС canvasMove1
-        }
+            if (Is_Inside_Canvas(canvasUpper1) == true)
+            {
+                //Рисуем фигуру, которую будет перемещать
+                //Redraw(figuresArray[currentFigureNumber1].shape, canvasUpper1);
+                mousePosition = Mouse.GetPosition(canvasUpper1);
+
+                //НАДО ДВИГАТЬ КАНВАС canvasMove1
+            }
         }
         private void canvasUpper1_MouseMove(object sender, MouseEventArgs e)
         {
@@ -340,9 +338,11 @@ namespace Block
                 if (Is_Inside_Canvas(canvasUpper1) == true)
                 {
                     e.MouseDevice.Capture(canvasUpper1);
-                    var position = e.GetPosition(canvasMain);
-                    Canvas.SetLeft(canvasUpper1, position.X - shift.X);
-                    Canvas.SetTop(canvasUpper1, position.Y - shift.Y);
+                    var position = e.GetPosition(canvasUpper1);
+                    TranslateTransform tr = new TranslateTransform(position.X - shift.X, position.Y - shift.Y);
+                    canvasUpper1.RenderTransform = tr;
+                    //Canvas.SetLeft(canvasUpper1, position.X - shift.X);
+                    // Canvas.SetTop(canvasUpper1, position.Y - shift.Y);
                     //Console.WriteLine(Canvas.GetLeft(canvasUpper1));
                     //Console.WriteLine(Canvas.GetTop(canvasUpper1));
                 }
@@ -351,7 +351,7 @@ namespace Block
 
         private void CanvasUpper2_MouseLeftButtonDown(object sender, MouseEventArgs e)
         {
-            if (Is_Inside_Canvas(canvasUpper2)==true)
+            if (Is_Inside_Canvas(canvasUpper2) == true)
             {
                 //Redraw(figuresArray[currentFigureNumber2].shape, canvasUpper2); //Рисуем фигуру, которую будет перемещать
                 mousePosition = Mouse.GetPosition(canvasMain);
@@ -363,12 +363,15 @@ namespace Block
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-                if (Is_Inside_Canvas(canvasUpper2)==true)
+                if (Is_Inside_Canvas(canvasUpper2) == true)
                 {
                     e.MouseDevice.Capture(canvasUpper2);
-                    var position = e.GetPosition(canvasMain);
-                    Canvas.SetLeft(canvasUpper2, position.X - shift.X);
-                    Canvas.SetTop(canvasUpper2, position.Y - shift.Y);
+                    var position = e.GetPosition(canvasUpper2);
+                    TranslateTransform tr = new TranslateTransform(position.X, position.Y);
+                    canvasUpper2.RenderTransform = tr;
+                    //Canvas.SetLeft(canvasUpper2, position.X - shift.X);
+                    //Canvas.SetTop(canvasUpper2, position.Y - shift.Y);
+
                 }
             }
         }
@@ -379,7 +382,7 @@ namespace Block
             var pos = e.GetPosition(canvasMain);
             Canvas.SetLeft(canvasMain, pos.X);
             Canvas.SetTop(canvasMain, pos.Y);
-            
+
         }
 
         //private void Grid_MouseUp(System.Object sender, System.Windows.Input.MouseButtonEventArgs e)
