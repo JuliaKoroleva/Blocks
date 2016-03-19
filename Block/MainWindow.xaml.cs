@@ -340,14 +340,14 @@ namespace Block
 
         public int[,] Transforming(int[,] figure, int a, int c)
         {
-            for (int i = 1; i < N; i++)
+            for (int i = 0; i < M; i++)
             {
-                for (int j = 1; j < N; j++)
+                for (int j = 0; j < M; j++)
                 {
-                    if ((i < a) || (j < c))
+                    if (figure[i,j]!=0)
+                        mainField[a+i, c+j] = figure[i, j];
+                    else
                         mainField[i, j] = 0;
-                    else 
-                       mainField[i, j] = figure[i-a, j-c];
                 }
             }
             return mainField;
@@ -365,10 +365,10 @@ namespace Block
 
         private void canvasMain_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Random r =new Random();
+            Random r = new Random();
             mousePosition = Mouse.GetPosition(this);
-            int a = Convert.ToInt32((mousePosition.X -80)/ 40);
-            int c = Convert.ToInt32((mousePosition.Y -240) / 40);
+            int a = Convert.ToInt32((mousePosition.X - 80)/ 40)+1;
+            int c = Convert.ToInt32((mousePosition.Y - 240) / 40);
             if ((CheckedPlace() == true) && (selected1 == true))
             {
                 bigFigure = Transforming(figuresArray[currentFigureNumber1].shape, a, c);
