@@ -34,7 +34,7 @@ namespace Block
         int currentFigureNumber1 = 0;
         int currentFigureNumber2 = 0;
 
-        bool selected = false;
+        bool selected1 = false;
         Point mousePosition;
         Point shift;
 
@@ -340,14 +340,14 @@ namespace Block
 
         public int[,] Transforming(int[,] figure, int a, int c)
         {
-            for (int i = 0; i < N; i++)
+            for (int i = 1; i < N; i++)
             {
-                for (int j = 0; j < N; j++)
+                for (int j = 1; j < N; j++)
                 {
                     if ((i < a) || (j < c))
                         mainField[i, j] = 0;
-                    else
-                        mainField[i, j] = figure[i-a, j-c];
+                    else 
+                       mainField[i, j] = figure[i-a, j-c];
                 }
             }
             return mainField;
@@ -357,29 +357,39 @@ namespace Block
         {
             if (Is_Inside_Canvas(canvasUpper1) == true)
             {
+                selected1 = true;
                 //Рисуем фигуру, которую будет перемещать
-                
                 //НАДО ДВИГАТЬ КАНВАС canvasMove1
             }
         }
 
         private void canvasMain_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            Random r =new Random();
             mousePosition = Mouse.GetPosition(this);
             int a = Convert.ToInt32((mousePosition.X -80)/ 40);
             int c = Convert.ToInt32((mousePosition.Y -240) / 40);
-            if (CheckedPlace() == true)
+            if ((CheckedPlace() == true) && (selected1 == true))
             {
-               bigFigure = Transforming(figuresArray[currentFigureNumber1].shape, a, c);
-               Redraw(bigFigure,canvasMain);
+                bigFigure = Transforming(figuresArray[currentFigureNumber1].shape, a, c);
+                Redraw(bigFigure, canvasMain);
+                canvasUpper1.Children.Clear();
+                currentFigureNumber1 = DrawFigures(r, canvasUpper1);
             }
-            
+            else
+            {
+                bigFigure = Transforming(figuresArray[currentFigureNumber2].shape, a, c);
+                Redraw(bigFigure, canvasMain);
+                canvasUpper2.Children.Clear();
+                currentFigureNumber2 = DrawFigures(r, canvasUpper2);
+            }
         }
 
         private void canvasUpper2_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (Is_Inside_Canvas(canvasUpper2) == true)
             {
+                selected1 = false;
             }
         }
 
