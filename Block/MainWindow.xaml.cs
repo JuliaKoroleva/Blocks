@@ -10,6 +10,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -27,6 +28,8 @@ namespace Block
         const int M = 4;
         const int K = 5;
         public int[,] shapeField = new int[M, K];
+
+        public int[,] bigFigure = new int[N, N];
 
         int currentFigureNumber1 = 0;
         int currentFigureNumber2 = 0;
@@ -134,7 +137,7 @@ namespace Block
         public MainWindow()
         {
             InitializeComponent();
-
+                   
             for (int i = 0; i < N; i++) //Создаем массив-схему основного поля
             {
                 for (int j = 0; j < N; j++)
@@ -161,10 +164,11 @@ namespace Block
             figuresArray = new Figure[17] {figure0, figure1, figure2, figure3, figure4, figure5, figure6,
                                            figure7, figure8, figure9, figure10, figure11, figure12, figure13,
                                            figure14, figure15, figure16};
-
+            
             canvasMain = Redraw(mainField, canvasMain);
             canvasUpper1 = Redraw(shapeField, canvasUpper1);
             canvasUpper2 = Redraw(shapeField, canvasUpper2);
+            
         }
 
         public Canvas Redraw(int[,] field, Canvas currentCanvas)
@@ -290,7 +294,7 @@ namespace Block
         {
             mousePosition = Mouse.GetPosition(currentCanvas);
 
-            if ((mousePosition.X > 0) && (mousePosition.Y > 0) && (mousePosition.X < canvasUpper1.Width) && (mousePosition.Y < canvasUpper1.Height))
+            if ((mousePosition.X > 0) && (mousePosition.Y > 0) && (mousePosition.X < currentCanvas.Width) && (mousePosition.Y < currentCanvas.Height))
                 return true;
 
             else
@@ -319,86 +323,65 @@ namespace Block
             Start.IsEnabled = false;
         }
 
+        public bool CheckedPlace()
+        {
+            for (int i = 0; i < N; i++)
+            {
+                for (int j = 0; j < N; j++)
+                {
+                    if ((mainField[i, j] == 1) && (bigFigure[i, j] == 1))
+                        return false;
+                    else
+                        return true;
+                }
+            }
+            return true;
+        }
+
+        public int[,] Transforming(int[,] figure, int a, int c)
+        {
+            for (int i = 0; i < N; i++)
+            {
+                for (int j = 0; j < N; j++)
+                {
+                    if ((i < a) || (j < c))
+                        mainField[i, j] = 0;
+                    else
+                        mainField[i, j] = figure[i-a, j-c];
+                }
+            }
+            return mainField;
+        }
 
         private void canvasUpper1_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (Is_Inside_Canvas(canvasUpper1) == true)
             {
                 //Рисуем фигуру, которую будет перемещать
-                //Redraw(figuresArray[currentFigureNumber1].shape, canvasUpper1);
-                mousePosition = Mouse.GetPosition(canvasUpper1);
-
+                
                 //НАДО ДВИГАТЬ КАНВАС canvasMove1
             }
         }
-        private void canvasUpper1_MouseMove(object sender, MouseEventArgs e)
+
+        private void canvasMain_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed)
+            mousePosition = Mouse.GetPosition(this);
+            int a = Convert.ToInt32((mousePosition.X -80)/ 40);
+            int c = Convert.ToInt32((mousePosition.Y -240) / 40);
+            if (CheckedPlace() == true)
             {
-                if (Is_Inside_Canvas(canvasUpper1) == true)
-                {
-                    e.MouseDevice.Capture(canvasUpper1);
-                    var position = e.GetPosition(canvasUpper1);
-                    TranslateTransform tr = new TranslateTransform(position.X - shift.X, position.Y - shift.Y);
-                    canvasUpper1.RenderTransform = tr;
-                    //Canvas.SetLeft(canvasUpper1, position.X - shift.X);
-                    // Canvas.SetTop(canvasUpper1, position.Y - shift.Y);
-                    //Console.WriteLine(Canvas.GetLeft(canvasUpper1));
-                    //Console.WriteLine(Canvas.GetTop(canvasUpper1));
-                }
+               bigFigure = Transforming(figuresArray[currentFigureNumber1].shape, a, c);
+               Redraw(bigFigure,canvasMain);
             }
+            
         }
 
-        private void CanvasUpper2_MouseLeftButtonDown(object sender, MouseEventArgs e)
+        private void canvasUpper2_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (Is_Inside_Canvas(canvasUpper2) == true)
             {
-                //Redraw(figuresArray[currentFigureNumber2].shape, canvasUpper2); //Рисуем фигуру, которую будет перемещать
-                mousePosition = Mouse.GetPosition(canvasMain);
-                //НАДО ДВИГАТЬ КАНВАС canvasMove2
             }
         }
 
-        private void canvasUpper2_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                if (Is_Inside_Canvas(canvasUpper2) == true)
-                {
-                    e.MouseDevice.Capture(canvasUpper2);
-                    var position = e.GetPosition(canvasUpper2);
-                    TranslateTransform tr = new TranslateTransform(position.X, position.Y);
-                    canvasUpper2.RenderTransform = tr;
-                    //Canvas.SetLeft(canvasUpper2, position.X - shift.X);
-                    //Canvas.SetTop(canvasUpper2, position.Y - shift.Y);
-
-                }
-            }
-        }
-
-        private void canvasMain_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            e.MouseDevice.Capture(null);
-            var pos = e.GetPosition(canvasMain);
-            Canvas.SetLeft(canvasMain, pos.X);
-            Canvas.SetTop(canvasMain, pos.Y);
-
-        }
-
-        //private void Grid_MouseUp(System.Object sender, System.Windows.Input.MouseButtonEventArgs e)
-        //{
-        //    if (e.ChangedButton == MouseButton.Left)
-        //    {
-        //        Redraw(figuresArray[currentFigureNumber1].shape, canvasMove);
-        //    }
-        //}
-
-        //private void canvasMove_MouseMove(object sender, MouseEventArgs e)
-        //{
-        //    if (selected == true)
-        //    {
-        //        canvasMove. = e.Location;
-        //    }
-        //}
     }
 }
