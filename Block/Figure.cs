@@ -9,7 +9,6 @@ namespace Block
 {
     public class Figure
     {
-        const int M = 4;
         public int[,] shape;
         public Color color;
 
