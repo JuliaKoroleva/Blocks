@@ -367,7 +367,7 @@ namespace Block
                 return true;
         }
 
-        public void Transforming(int[,] figure, int Ycell, int Xcell) //МЕТОД, ПРЕОБРАЗУЮЩИЙ МАССИВ ФИГУРЫ В МАССИВ РАЗМЕРА ОСНОВНОГО ПОЛЯ
+        public bool Transforming(int[,] figure, int Ycell, int Xcell) //МЕТОД, ПРЕОБРАЗУЮЩИЙ МАССИВ ФИГУРЫ В МАССИВ РАЗМЕРА ОСНОВНОГО ПОЛЯ
         {
             for (int i = 0; i < N; i++)
                 for (int j = 0; j < N; j++)
@@ -381,23 +381,37 @@ namespace Block
                 {
                     if (figure[i, j] != 0)
                     {
-                        if ((Ycell + i > 9) && (Xcell + j > 9))
-                            bigFigure[9, 9] = figure[i, j];
-                        else if (Ycell + i > 9)
-                            bigFigure[9, Xcell + j] = figure[i, j];
-                        else if (Xcell + j > 9)
-                            bigFigure[Ycell + i, 9] = figure[i, j];
-                        else if ((Ycell + i < 0) && (Xcell + j < 0))
-                            bigFigure[0, 0] = figure[i, j];
-                        else if (Ycell + i < 0)
-                            bigFigure[0, Xcell + j] = figure[i, j];
-                        else if (Xcell + j < 0)
-                            bigFigure[Ycell + i, 0] = figure[i, j];
+                        int newX = Xcell + j;
+                        int newY = Ycell + i;
+
+                        if ((newX > N - 1) || (newX < 0) || (newY > N - 1) || (newY < 0))
+                        {
+                            return false;
+                        }
+
                         else
-                            bigFigure[Ycell + i, Xcell + j] = figure[i, j];                      
+                        {
+                            bigFigure[newY, newX] = figure[i, j];
+                        }
+
+                        //if ((Ycell + i > 9) && (Xcell + j > 9))
+                        //    bigFigure[9, 9] = figure[i, j];
+                        //else if (Ycell + i > 9)
+                        //    bigFigure[9, Xcell + j] = figure[i, j];
+                        //else if (Xcell + j > 9)
+                        //    bigFigure[Ycell + i, 9] = figure[i, j];
+                        //else if ((Ycell + i < 0) && (Xcell + j < 0))
+                        //    bigFigure[0, 0] = figure[i, j];
+                        //else if (Ycell + i < 0)
+                        //    bigFigure[0, Xcell + j] = figure[i, j];
+                        //else if (Xcell + j < 0)
+                        //    bigFigure[Ycell + i, 0] = figure[i, j];
+                        //else
+                        //    bigFigure[Ycell + i, Xcell + j] = figure[i, j];                      
                     }       
                 }
             }
+            return true;
         }
 
         public int[,] Add_Figure_To_Array (int[,] figure, int[,] field)
@@ -441,37 +455,37 @@ namespace Block
 
             if (selected1)
             {
-                Transforming(figuresArray[currentFigureNumber1].shape, Ycell, Xcell);
-
-                if (CheckedPlace(bigFigure, mainField))
+                if (Transforming(figuresArray[currentFigureNumber1].shape, Ycell, Xcell))
                 {
-                    Redraw(bigFigure, canvasMain);
-                    mainField = Add_Figure_To_Array(bigFigure, mainField);
-                    Delete_Rows_Columns(ref mainField, canvasMain);
+                    if (CheckedPlace(bigFigure, mainField))
+                    {
+                        Redraw(bigFigure, canvasMain);
+                        mainField = Add_Figure_To_Array(bigFigure, mainField);
+                        Delete_Rows_Columns(ref mainField, canvasMain);
 
-                    canvasUpper1.Children.Clear();
-                    currentFigureNumber1 = DrawFigures(r, canvasUpper1);
+                        canvasUpper1.Children.Clear();
+                        currentFigureNumber1 = DrawFigures(r, canvasUpper1);
 
+                    }
+                    selected1 = false;
                 }
-
-                selected1 = false;
             }
 
             else if (selected2)
             {
-                Transforming(figuresArray[currentFigureNumber2].shape, Ycell, Xcell);
-
-                if (CheckedPlace(bigFigure, mainField))
+                if (Transforming(figuresArray[currentFigureNumber1].shape, Ycell, Xcell))
                 {
+                    if (CheckedPlace(bigFigure, mainField))
+                    {
 
-                    Redraw(bigFigure, canvasMain);
-                    mainField = Add_Figure_To_Array(bigFigure, mainField);
+                        Redraw(bigFigure, canvasMain);
+                        mainField = Add_Figure_To_Array(bigFigure, mainField);
 
-                    canvasUpper2.Children.Clear();
-                    currentFigureNumber2 = DrawFigures(r, canvasUpper2);
+                        canvasUpper2.Children.Clear();
+                        currentFigureNumber2 = DrawFigures(r, canvasUpper2);
+                    }
+                    selected2 = false;
                 }
-
-                selected2 = false;
             }
             canvasMain.IsEnabled = false;
         }
