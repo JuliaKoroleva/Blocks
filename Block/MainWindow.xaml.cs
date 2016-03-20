@@ -414,12 +414,12 @@ namespace Block
 
         private void Rules_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Правила игры: ");
+            GameRules(); 
         }
 
         private void GameRules()
         {
-            MessageBox.Show("Правила игры: ");
+            MessageBox.Show("Правила игры: Переставляйте фигуры на поле так, чтобы заполнить горизонтальную и вертикальную линии. Чтобы поставить фигуру: сначала нажмите на нее, а затем нажмите на место на главном поле, куда Вы хотите поставить фигуру. Набирите как можно больше очков. Удачи!");
         }
 
         private void AboutGame()
