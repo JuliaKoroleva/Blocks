@@ -364,7 +364,7 @@ namespace Block
             return true;
         }
 
-        public void Transforming(int[,] figure, int a, int c) //МЕТОД, ПРЕОБРАЗУЮЩИЙ МАССИВ ФИГУРЫ В МАССИВ РАЗМЕРА ОСНОВНОГО ПОЛЯ
+        public void Transforming(int[,] figure, int Ycell, int Xcell) //МЕТОД, ПРЕОБРАЗУЮЩИЙ МАССИВ ФИГУРЫ В МАССИВ РАЗМЕРА ОСНОВНОГО ПОЛЯ
         {
             for (int i = 0; i < N; i++)
                 for (int j = 0; j < N; j++)
@@ -378,7 +378,7 @@ namespace Block
                 {
                     if (figure[i, j] != 0)
                     {
-                        bigFigure[a + i, c + j] = figure[i, j];
+                        bigFigure[Ycell + i, Xcell + j] = figure[i, j];
                         
                     }
                    
@@ -407,13 +407,13 @@ namespace Block
         {
             Random r = new Random();
             mousePosition = Mouse.GetPosition(this);
-            int a = Convert.ToInt32((mousePosition.X - 80) / 40) + 1; //"КООРДИНАТА Х" КЛЕТКИ НА ОСНОВНОМ ПОЛЕ, НА КОТОРОЙ НАХОДИТСЯ КУРСОР
-            int c = Convert.ToInt32((mousePosition.Y - 240) / 40); //"КООРДИНАТА У" КЛЕТКИ НА ОСНОВНОМ ПОЛЕ, НА КОТОРОЙ НАХОДИТСЯ КУРСОР
+            int Xcell = Convert.ToInt32((mousePosition.X - 80) / 40) + 1; //"КООРДИНАТА Х" КЛЕТКИ НА ОСНОВНОМ ПОЛЕ, НА КОТОРОЙ НАХОДИТСЯ КУРСОР
+            int Ycell = Convert.ToInt32((mousePosition.Y - 240) / 40); //"КООРДИНАТА У" КЛЕТКИ НА ОСНОВНОМ ПОЛЕ, НА КОТОРОЙ НАХОДИТСЯ КУРСОР
 
             if (selected1)
             {
 
-                Transforming(figuresArray[currentFigureNumber1].shape, a, c);
+                Transforming(figuresArray[currentFigureNumber1].shape, Ycell, Xcell);
 
                 if (CheckedPlace(bigFigure))
                 {
@@ -429,7 +429,7 @@ namespace Block
 
             else if (selected2)
             {
-                Transforming(figuresArray[currentFigureNumber2].shape, a, c);
+                Transforming(figuresArray[currentFigureNumber2].shape, Ycell, Xcell);
 
                 if (CheckedPlace(bigFigure))
                 {
