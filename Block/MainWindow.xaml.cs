@@ -473,7 +473,7 @@ namespace Block
 
             else if (selected2)
             {
-                if (Transforming(figuresArray[currentFigureNumber1].shape, Ycell, Xcell))
+                if (Transforming(figuresArray[currentFigureNumber2].shape, Ycell, Xcell))
                 {
                     if (CheckedPlace(bigFigure, mainField))
                     {
