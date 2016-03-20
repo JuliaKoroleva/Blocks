@@ -349,19 +349,22 @@ namespace Block
             return flag;
         }
 
-        public bool CheckedPlace(int[,] bigFigure) //МЕТОД, ПРОВЕРЯЮЩИЙ, ЧТО КЛЕТКИ ПОД ФИГУРОЙ СВОБОДНЫ
+        public bool CheckedPlace(int[,] bigFigure, int[,] mainField) //МЕТОД, ПРОВЕРЯЮЩИЙ, ЧТО КЛЕТКИ ПОД ФИГУРОЙ СВОБОДНЫ
         {
+            bool flag = false; 
             for (int i = 0; i < N; i++)
             {
                 for (int j = 0; j < N; j++)
                 {
                     if ((mainField[i, j] == 1) && (bigFigure[i, j] == 1))
-                        return false;
-                    else
-                        return true;
+                        flag = true;
                 }
             }
-            return true;
+
+            if (flag)
+                return false;
+            else
+                return true;
         }
 
         public void Transforming(int[,] figure, int Ycell, int Xcell) //МЕТОД, ПРЕОБРАЗУЮЩИЙ МАССИВ ФИГУРЫ В МАССИВ РАЗМЕРА ОСНОВНОГО ПОЛЯ
@@ -391,7 +394,7 @@ namespace Block
                         else if (Xcell + j < 0)
                             bigFigure[Ycell + i, 0] = figure[i, j];
                         else
-                        bigFigure[Ycell + i, Xcell + j] = figure[i, j];                      
+                            bigFigure[Ycell + i, Xcell + j] = figure[i, j];                      
                     }       
                 }
             }
@@ -440,7 +443,7 @@ namespace Block
             {
                 Transforming(figuresArray[currentFigureNumber1].shape, Ycell, Xcell);
 
-                if (CheckedPlace(bigFigure))
+                if (CheckedPlace(bigFigure, mainField))
                 {
                     Redraw(bigFigure, canvasMain);
                     mainField = Add_Figure_To_Array(bigFigure, mainField);
@@ -457,7 +460,7 @@ namespace Block
             {
                 Transforming(figuresArray[currentFigureNumber2].shape, Ycell, Xcell);
 
-                if (CheckedPlace(bigFigure))
+                if (CheckedPlace(bigFigure, mainField))
                 {
 
                     Redraw(bigFigure, canvasMain);
