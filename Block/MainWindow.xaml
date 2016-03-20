@@ -18,8 +18,8 @@
         <WrapPanel Height="560" VerticalAlignment="Top" Width="400">
             <Canvas x:Name="canvasUpper1" Height="160" Width="200"  Background="Transparent" MouseLeftButtonDown="canvasUpper1_MouseLeftButtonDown" />
             <Canvas x:Name="canvasUpper2" Height="160" Width="200" Background="Transparent" MouseLeftButtonDown="canvasUpper2_MouseLeftButtonDown"/>
-            <Border Grid.ColumnSpan="10" Grid.RowSpan="10" BorderThickness="2" BorderBrush="#7F000000" VerticalAlignment="Bottom">
-                <Canvas x:Name="canvasMain" Height="405" Width="405" Background="Transparent" VerticalAlignment="Bottom" MouseLeftButtonDown="canvasMain_MouseLeftButtonDown" MouseMove="canvasMain_MouseMove"/>
+            <Border BorderThickness="2" BorderBrush="#7F000000" VerticalAlignment="Bottom" Height="461" Width="399">
+                <Canvas x:Name="canvasMain" Width="398" Background="Transparent" MouseLeftButtonDown="canvasMain_MouseLeftButtonDown" MouseMove="canvasMain_MouseMove" Margin="0,-2,-3,0"/>
             </Border>
         </WrapPanel>
     </DockPanel>

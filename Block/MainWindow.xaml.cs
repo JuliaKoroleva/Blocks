@@ -180,7 +180,7 @@ namespace Block
             canvasUpper1 = Redraw(shapeField, canvasUpper1, Colors.Plum);
             canvasUpper2 = Redraw(shapeField, canvasUpper2, Colors.Plum);
 
-            
+
         }
 
         public Canvas Redraw(int[,] field, Canvas currentCanvas, Color color) //МЕТОД ПЕРЕРИСОВКИ КАНВАСА
@@ -203,38 +203,6 @@ namespace Block
                     {
                         rect.Fill = new SolidColorBrush(color);
                         rect.Stroke = new SolidColorBrush(Colors.Gray);
-
-                        //Random rand = new Random();
-
-                        //switch (rand.Next() % 6)
-                        //{
-                        //    case 0:
-                        //        rect.Fill = new SolidColorBrush(Colors.LightCoral);
-                        //        rect.Stroke = new SolidColorBrush(Colors.Gray);
-                        //        break;
-                        //    case 1:
-                        //        rect.Fill = new SolidColorBrush(Colors.LightGreen);
-                        //        rect.Stroke = new SolidColorBrush(Colors.Gray);
-                        //        break;
-                        //    case 2:
-                        //        rect.Fill = new SolidColorBrush(Colors.LightSkyBlue);
-                        //        rect.Stroke = new SolidColorBrush(Colors.Gray);
-                        //        break;
-                        //    case 3:
-                        //        rect.Fill = new SolidColorBrush(Colors.Yellow);
-                        //        rect.Stroke = new SolidColorBrush(Colors.Gray);
-                        //        break;
-                        //    case 4:
-                        //        rect.Fill = new SolidColorBrush(Colors.Plum);
-                        //        rect.Stroke = new SolidColorBrush(Colors.Gray);
-                        //        break;
-                        //    case 5:
-                        //        rect.Fill = new SolidColorBrush(Colors.LightPink);
-                        //        rect.Stroke = new SolidColorBrush(Colors.Gray);
-                        //        break;
-                        //    default:
-                        //        break;
-                        //}
                     }
 
                     Canvas.SetLeft(rect, rect.Width * j);
@@ -301,14 +269,14 @@ namespace Block
                     rect.Stroke = new SolidColorBrush(Colors.Gray);
                     rect.Width = cellWidth;
                     rect.Height = cellHeight;
-                    
+
                     for (int j2 = 0; j2 < N; j2++)
                     {
                         currentCanvas.Children.Clear();
                         canvasMain = Redraw(mainField, canvasMain, Colors.Plum);
                         Canvas.SetLeft(rect, rect.Width * j2);
                         Canvas.SetTop(rect, rect.Height * i);
-                        
+
                         currentCanvas.Children.Add(rect);
 
                         field[i, j2] = 0;
@@ -372,7 +340,7 @@ namespace Block
 
         public bool CheckedPlace(int[,] bigFigure, int[,] mainField) //МЕТОД, ПРОВЕРЯЮЩИЙ, ЧТО КЛЕТКИ ПОД ФИГУРОЙ СВОБОДНЫ
         {
-            bool flag = false; 
+            bool flag = false;
             for (int i = 0; i < N; i++)
             {
                 for (int j = 0; j < N; j++)
@@ -414,32 +382,17 @@ namespace Block
                         {
                             bigFigure[newY, newX] = figure[i, j];
                         }
-
-                        //if ((Ycell + i > 9) && (Xcell + j > 9))
-                        //    bigFigure[9, 9] = figure[i, j];
-                        //else if (Ycell + i > 9)
-                        //    bigFigure[9, Xcell + j] = figure[i, j];
-                        //else if (Xcell + j > 9)
-                        //    bigFigure[Ycell + i, 9] = figure[i, j];
-                        //else if ((Ycell + i < 0) && (Xcell + j < 0))
-                        //    bigFigure[0, 0] = figure[i, j];
-                        //else if (Ycell + i < 0)
-                        //    bigFigure[0, Xcell + j] = figure[i, j];
-                        //else if (Xcell + j < 0)
-                        //    bigFigure[Ycell + i, 0] = figure[i, j];
-                        //else
-                        //    bigFigure[Ycell + i, Xcell + j] = figure[i, j];                      
-                    }       
+                    }
                 }
             }
             return true;
         }
 
-        public int[,] Add_Figure_To_Array (int[,] figure, int[,] field)
+        public int[,] Add_Figure_To_Array(int[,] figure, int[,] field)
         {
             for (int i = 0; i < N; i++)
             {
-                for(int j = 0; j < N; j++)
+                for (int j = 0; j < N; j++)
                 {
                     if (figure[i, j] == 1)
                         field[i, j] = 1;
@@ -472,7 +425,7 @@ namespace Block
             Random r = new Random();
             mousePosition = Mouse.GetPosition(this);
             int Xcell = Convert.ToInt32((mousePosition.X - 120) / 40) + 1; //"КООРДИНАТА Х" КЛЕТКИ НА ОСНОВНОМ ПОЛЕ, НА КОТОРОЙ НАХОДИТСЯ КУРСОР
-            int Ycell = Convert.ToInt32((mousePosition.Y - 290) / 40) ; //"КООРДИНАТА У" КЛЕТКИ НА ОСНОВНОМ ПОЛЕ, НА КОТОРОЙ НАХОДИТСЯ КУРСОР
+            int Ycell = Convert.ToInt32((mousePosition.Y - 290) / 40); //"КООРДИНАТА У" КЛЕТКИ НА ОСНОВНОМ ПОЛЕ, НА КОТОРОЙ НАХОДИТСЯ КУРСОР
 
             if (selected1)
             {
@@ -551,7 +504,7 @@ namespace Block
 
         private void Rules_Click(object sender, RoutedEventArgs e)
         {
-            GameRules(); 
+            GameRules();
         }
 
         private void GameRules()
@@ -568,7 +521,7 @@ namespace Block
         {
             canvasUpper1.Children.Clear();
             canvasUpper2.Children.Clear();
-            
+
             Rectangle rect = new Rectangle();
             rect.Stroke = new SolidColorBrush(Colors.Gray);
             rect.Width = cellWidth;
@@ -585,7 +538,7 @@ namespace Block
                     canvasMain.Children.Add(rect);
                     mainField[i, j] = 0;
                 }
-                
+
             }
             score = 0;
             Score.Content = getScore().ToString("0");
@@ -615,12 +568,12 @@ namespace Block
                 case Key.F2:
                     SaveResults(score);
                     RestartGame();
-                    GameStart(); 
+                    GameStart();
                     break;
                 case Key.F11:
                     AboutGame();
                     break;
-                    default:
+                default:
                     break;
             }
         }
