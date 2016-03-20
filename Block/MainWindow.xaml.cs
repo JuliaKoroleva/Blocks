@@ -52,6 +52,7 @@ namespace Block
                                             { 0, 1, 0, 0 },
                                             { 0, 0, 0, 0 },
                                             { 0, 0, 0, 0 } };
+
         int[,] shape1 = new int[M, M] { { 0, 0, 0, 0 },
                                             { 0, 1, 1, 0 },
                                             { 0, 0, 0, 0 },
@@ -188,7 +189,7 @@ namespace Block
                     rect.Width = cellWidth;
                     rect.Height = cellHeight;
 
-                    if (field[i, j] != 0)
+                    if ((field[i, j] != 0))
                     {
                         Random rand = new Random();
 
@@ -233,7 +234,6 @@ namespace Block
 
         public Canvas RedrawMove(int[,] field, Canvas currentCanvas) //МЕТОД ПЕРЕРИСОВКИ КАНВАСА ПРИ ДВИЖЕНИИ КУРСОРА
         {
-            int count = 0;
             canvasMain.Children.Clear();
             Redraw(mainField, canvasMain);
 
@@ -256,16 +256,14 @@ namespace Block
                         Canvas.SetLeft(rect, rect.Width * j);
                         Canvas.SetTop(rect, rect.Height * i);
                         currentCanvas.Children.Add(rect);
-                        count++;
                     }
                 }
             }
-            Console.WriteLine(count);
             return currentCanvas;
         }
 
 
-        public Canvas Delete_Rows_Columns(ref int[,] field, Canvas canvas_Main) //МЕТОД УДАЛЕНИЯ ЗАПОЛНЕННЫХ РЯДОВ И КОЛОНОК
+        public Canvas Delete_Rows_Columns(ref int[,] field, Canvas currentCanvas) //МЕТОД УДАЛЕНИЯ ЗАПОЛНЕННЫХ РЯДОВ И КОЛОНОК
         {
             //int rows = field.GetLength(1);
             //int columns = field.GetLength(0);
@@ -294,7 +292,7 @@ namespace Block
                     {
                         Canvas.SetLeft(rect, rect.Width * j2);
                         Canvas.SetTop(rect, rect.Height * i);
-                        canvas_Main.Children.Add(rect);
+                        currentCanvas.Children.Add(rect);
 
                         field[i, j2] = 0;
                     }
@@ -311,7 +309,7 @@ namespace Block
                     {
                         Canvas.SetLeft(rect, rect.Width * i);
                         Canvas.SetTop(rect, rect.Height * j2);
-                        canvas_Main.Children.Add(rect);
+                        currentCanvas.Children.Add(rect);
 
                         field[j2, i] = 0;
                     }
@@ -321,7 +319,7 @@ namespace Block
                 flag_columns = false;
             }
 
-            return canvas_Main;
+            return currentCanvas;
         }
 
 
