@@ -391,8 +391,7 @@ namespace Block
                         else if (Xcell + j <0)
                             bigFigure[Ycell + i, 0] = figure[i, j];
                         else
-                        bigFigure[Ycell + i, Xcell + j] = figure[i, j];
-                        
+                        bigFigure[Ycell + i, Xcell + j] = figure[i, j];                      
                     }       
                 }
             }
