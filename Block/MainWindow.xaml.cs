@@ -284,19 +284,23 @@ namespace Block
                 if (!flag_rows) //если весь ряд заполнен
                 {
                     Rectangle rect = new Rectangle();
+                    rect.Fill = new SolidColorBrush(Colors.White);
                     rect.Stroke = new SolidColorBrush(Colors.Gray);
                     rect.Width = cellWidth;
                     rect.Height = cellHeight;
-                    rect.Fill = new SolidColorBrush(Colors.White);
-
+                    
                     for (int j2 = 0; j2 < N; j2++)
                     {
+                        currentCanvas.Children.Clear();
+                        canvasMain = Redraw(mainField, canvasMain);
                         Canvas.SetLeft(rect, rect.Width * j2);
                         Canvas.SetTop(rect, rect.Height * i);
+                        
                         currentCanvas.Children.Add(rect);
 
                         field[i, j2] = 0;
                     }
+
                 }
 
                 if (!flag_columns) //если весь столбец заполнен
@@ -309,6 +313,9 @@ namespace Block
 
                     for (int j2 = 0; j2 < N; j2++)
                     {
+                        currentCanvas.Children.Clear();
+                        canvasMain = Redraw(mainField, canvasMain);
+
                         Canvas.SetLeft(rect, rect.Width * i);
                         Canvas.SetTop(rect, rect.Height * j2);
                         currentCanvas.Children.Add(rect);
@@ -461,7 +468,7 @@ namespace Block
                     {
                         Redraw(bigFigure, canvasMain);
                         mainField = Add_Figure_To_Array(bigFigure, mainField);
-                        Delete_Rows_Columns(ref mainField, canvasMain);
+                        canvasMain = Delete_Rows_Columns(ref mainField, canvasMain);
 
                         canvasUpper1.Children.Clear();
                         currentFigureNumber1 = DrawFigures(r, canvasUpper1);
@@ -480,6 +487,7 @@ namespace Block
 
                         Redraw(bigFigure, canvasMain);
                         mainField = Add_Figure_To_Array(bigFigure, mainField);
+                        canvasMain = Delete_Rows_Columns(ref mainField, canvasMain);
 
                         canvasUpper2.Children.Clear();
                         currentFigureNumber2 = DrawFigures(r, canvasUpper2);
