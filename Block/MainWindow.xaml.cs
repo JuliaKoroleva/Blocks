@@ -164,21 +164,21 @@ namespace Block
                 }
             }
 
-            figure0 = new Figure(shape0, Colors.DarkSalmon); figure1 = new Figure(shape1, Colors.DarkSeaGreen); figure2 = new Figure(shape2, Colors.SkyBlue);
-            figure3 = new Figure(shape3, Colors.DeepSkyBlue); figure4 = new Figure(shape4, Colors.DarkTurquoise); figure5 = new Figure(shape5, Colors.SeaGreen);
-            figure6 = new Figure(shape6, Colors.HotPink); figure7 = new Figure(shape7, Colors.Indigo); figure8 = new Figure(shape8, Colors.Salmon);
-            figure9 = new Figure(shape9, Colors.Magenta); figure10 = new Figure(shape10, Colors.Maroon); figure11 = new Figure(shape11, Colors.Purple);
-            figure12 = new Figure(shape12, Colors.MediumPurple); figure13 = new Figure(shape13, Colors.MediumSeaGreen); figure14 = new Figure(shape14, Colors.Pink);
-            figure15 = new Figure(shape15, Colors.MediumBlue); figure16 = new Figure(shape16, Colors.MediumVioletRed);
+            figure0 = new Figure(shape0, Colors.Orchid); figure1 = new Figure(shape1, Colors.Coral); figure2 = new Figure(shape2, Colors.Coral);
+            figure3 = new Figure(shape3, Colors.MediumVioletRed); figure4 = new Figure(shape4, Colors.MediumVioletRed); figure5 = new Figure(shape5, Colors.MediumVioletRed);
+            figure6 = new Figure(shape6, Colors.MediumVioletRed); figure7 = new Figure(shape7, Colors.DeepSkyBlue); figure8 = new Figure(shape8, Colors.RoyalBlue);
+            figure9 = new Figure(shape9, Colors.RoyalBlue); figure10 = new Figure(shape10, Colors.Crimson); figure11 = new Figure(shape11, Colors.Crimson);
+            figure12 = new Figure(shape12, Colors.Crimson); figure13 = new Figure(shape13, Colors.Crimson); figure14 = new Figure(shape14, Colors.Teal);
+            figure15 = new Figure(shape15, Colors.Teal); figure16 = new Figure(shape16, Colors.Salmon);
 
             figuresArray = new Figure[17] {figure0, figure1, figure2, figure3, figure4, figure5, figure6,
                                            figure7, figure8, figure9, figure10, figure11, figure12, figure13,
                                            figure14, figure15, figure16};
 
-            canvasMain = Redraw(mainField, canvasMain, Colors.Plum);
+            canvasMain = Redraw(mainField, canvasMain, Colors.MediumSpringGreen);
 
-            canvasUpper1 = Redraw(shapeField, canvasUpper1, Colors.Plum);
-            canvasUpper2 = Redraw(shapeField, canvasUpper2, Colors.Plum);
+            canvasUpper1 = Redraw(shapeField, canvasUpper1, Colors.MediumSpringGreen);
+            canvasUpper2 = Redraw(shapeField, canvasUpper2, Colors.MediumSpringGreen);
 
 
         }
@@ -216,7 +216,7 @@ namespace Block
         public Canvas RedrawMove(int[,] field, Canvas currentCanvas) //МЕТОД ПЕРЕРИСОВКИ КАНВАСА ПРИ ДВИЖЕНИИ КУРСОРА
         {
             canvasMain.Children.Clear();
-            Redraw(mainField, canvasMain, Colors.Plum);
+            Redraw(mainField, canvasMain, Colors.MediumSpringGreen);
 
             int rows = field.GetLength(0);
             int columns = field.GetLength(1);
@@ -273,7 +273,7 @@ namespace Block
                     for (int j2 = 0; j2 < N; j2++)
                     {
                         currentCanvas.Children.Clear();
-                        canvasMain = Redraw(mainField, canvasMain, Colors.Plum);
+                        canvasMain = Redraw(mainField, canvasMain, Colors.MediumSpringGreen);
                         Canvas.SetLeft(rect, rect.Width * j2);
                         Canvas.SetTop(rect, rect.Height * i);
 
@@ -295,7 +295,7 @@ namespace Block
                     for (int j2 = 0; j2 < N; j2++)
                     {
                         currentCanvas.Children.Clear();
-                        canvasMain = Redraw(mainField, canvasMain, Colors.Plum);
+                        canvasMain = Redraw(mainField, canvasMain, Colors.MediumSpringGreen);
 
                         Canvas.SetLeft(rect, rect.Width * i);
                         Canvas.SetTop(rect, rect.Height * j2);
@@ -433,7 +433,7 @@ namespace Block
                 {
                     if (CheckedPlace(bigFigure, mainField))
                     {
-                        Redraw(bigFigure, canvasMain, Colors.Plum);
+                        Redraw(bigFigure, canvasMain, Colors.MediumSpringGreen);
                         mainField = Add_Figure_To_Array(bigFigure, mainField);
                         canvasMain = Delete_Rows_Columns(ref mainField, canvasMain);
 
@@ -452,7 +452,7 @@ namespace Block
                     if (CheckedPlace(bigFigure, mainField))
                     {
 
-                        Redraw(bigFigure, canvasMain, Colors.Plum);
+                        Redraw(bigFigure, canvasMain, Colors.MediumSpringGreen);
                         mainField = Add_Figure_To_Array(bigFigure, mainField);
                         canvasMain = Delete_Rows_Columns(ref mainField, canvasMain);
 
@@ -532,7 +532,7 @@ namespace Block
                 for (int j = 0; j < N; j++)
                 {
                     canvasMain.Children.Clear();
-                    canvasMain = Redraw(mainField, canvasMain, Colors.Plum);
+                    canvasMain = Redraw(mainField, canvasMain, Colors.MediumSpringGreen);
                     Canvas.SetLeft(rect, rect.Width * i);
                     Canvas.SetTop(rect, rect.Height * j);
                     canvasMain.Children.Add(rect);
