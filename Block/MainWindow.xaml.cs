@@ -35,6 +35,8 @@ namespace Block
         int currentFigureNumber2 = 0;
 
         bool selected1 = false;
+        bool selected2 = false;
+
         Point mousePosition;
         Point shift;
 
@@ -47,88 +49,88 @@ namespace Block
         Figure figure12; Figure figure13; Figure figure14;
         Figure figure15; Figure figure16;
 
-        int[,] shape0 = new int[M, M] { { 0, 0, 0, 0 }, 
-                                            { 0, 1, 0, 0 }, 
-                                            { 0, 0, 0, 0 }, 
+        int[,] shape0 = new int[M, M] { { 0, 0, 0, 0 },
+                                            { 0, 1, 0, 0 },
+                                            { 0, 0, 0, 0 },
                                             { 0, 0, 0, 0 } };
-        int[,] shape1 = new int[M, M] { { 0, 0, 0, 0 }, 
-                                            { 0, 1, 1, 0 }, 
-                                            { 0, 0, 0, 0 }, 
-                                            { 0, 0, 0, 0 } };
-
-        int[,] shape2 = new int[M, M] { { 0, 0, 0, 0 }, 
-                                            { 0, 1, 0, 0 }, 
-                                            { 0, 1, 0, 0 }, 
+        int[,] shape1 = new int[M, M] { { 0, 0, 0, 0 },
+                                            { 0, 1, 1, 0 },
+                                            { 0, 0, 0, 0 },
                                             { 0, 0, 0, 0 } };
 
-        int[,] shape3 = new int[M, M] { { 0, 0, 0, 0 }, 
-                                            { 0, 1, 1, 0 }, 
-                                            { 0, 1, 0, 0 }, 
+        int[,] shape2 = new int[M, M] { { 0, 0, 0, 0 },
+                                            { 0, 1, 0, 0 },
+                                            { 0, 1, 0, 0 },
                                             { 0, 0, 0, 0 } };
 
-        int[,] shape4 = new int[M, M] { { 0, 0, 0, 0 }, 
-                                            { 0, 1, 1, 0 }, 
-                                            { 0, 0, 1, 0 }, 
+        int[,] shape3 = new int[M, M] { { 0, 0, 0, 0 },
+                                            { 0, 1, 1, 0 },
+                                            { 0, 1, 0, 0 },
                                             { 0, 0, 0, 0 } };
 
-        int[,] shape5 = new int[M, M] { { 0, 0, 0, 0 }, 
-                                            { 0, 0, 1, 0 }, 
-                                            { 0, 1, 1, 0 }, 
+        int[,] shape4 = new int[M, M] { { 0, 0, 0, 0 },
+                                            { 0, 1, 1, 0 },
+                                            { 0, 0, 1, 0 },
                                             { 0, 0, 0, 0 } };
 
-        int[,] shape6 = new int[M, M] { { 0, 0, 0, 0 }, 
-                                            { 0, 1, 0, 0 }, 
-                                            { 0, 1, 1, 0 }, 
+        int[,] shape5 = new int[M, M] { { 0, 0, 0, 0 },
+                                            { 0, 0, 1, 0 },
+                                            { 0, 1, 1, 0 },
                                             { 0, 0, 0, 0 } };
 
-        int[,] shape7 = new int[M, M] { { 0, 0, 0, 0 }, 
-                                            { 0, 1, 1, 0 }, 
-                                            { 0, 1, 1, 0 }, 
+        int[,] shape6 = new int[M, M] { { 0, 0, 0, 0 },
+                                            { 0, 1, 0, 0 },
+                                            { 0, 1, 1, 0 },
                                             { 0, 0, 0, 0 } };
 
-        int[,] shape8 = new int[M, M] { { 0, 1, 0, 0 }, 
-                                            { 0, 1, 0, 0 }, 
-                                            { 0, 1, 0, 0 }, 
+        int[,] shape7 = new int[M, M] { { 0, 0, 0, 0 },
+                                            { 0, 1, 1, 0 },
+                                            { 0, 1, 1, 0 },
                                             { 0, 0, 0, 0 } };
 
-        int[,] shape9 = new int[M, M] { { 0, 0, 0, 0 }, 
-                                             { 1, 1, 1, 0 }, 
-                                             { 0, 0, 0, 0 }, 
+        int[,] shape8 = new int[M, M] { { 0, 1, 0, 0 },
+                                            { 0, 1, 0, 0 },
+                                            { 0, 1, 0, 0 },
+                                            { 0, 0, 0, 0 } };
+
+        int[,] shape9 = new int[M, M] { { 0, 0, 0, 0 },
+                                             { 1, 1, 1, 0 },
+                                             { 0, 0, 0, 0 },
                                              { 0, 0, 0, 0 } };
 
-        int[,] shape10 = new int[M, M] { { 1, 1, 1, 0 }, 
-                                             { 1, 0, 0, 0 }, 
-                                             { 1, 0, 0, 0 }, 
+        int[,] shape10 = new int[M, M] { { 1, 1, 1, 0 },
+                                             { 1, 0, 0, 0 },
+                                             { 1, 0, 0, 0 },
                                              { 0, 0, 0, 0 } };
 
-        int[,] shape11 = new int[M, M] { { 1, 1, 1, 0 }, 
-                                             { 0, 0, 1, 0 }, 
-                                             { 0, 0, 1, 0 }, 
+        int[,] shape11 = new int[M, M] { { 1, 1, 1, 0 },
+                                             { 0, 0, 1, 0 },
+                                             { 0, 0, 1, 0 },
                                              { 0, 0, 1, 0 } };
 
-        int[,] shape12 = new int[M, M] { { 0, 0, 1, 0 }, 
-                                             { 0, 0, 1, 0 }, 
-                                             { 1, 1, 1, 0 }, 
+        int[,] shape12 = new int[M, M] { { 0, 0, 1, 0 },
+                                             { 0, 0, 1, 0 },
+                                             { 1, 1, 1, 0 },
                                              { 0, 0, 0, 0 } };
 
         int[,] shape13 = new int[M, M] { { 1, 0, 0, 0 },
-                                             { 1, 0, 0, 0 }, 
-                                             { 1, 1, 1, 0 }, 
+                                             { 1, 0, 0, 0 },
+                                             { 1, 1, 1, 0 },
                                              { 0, 0, 0, 0 } };
 
-        int[,] shape14 = new int[M, M] { { 0, 1, 0, 0 }, 
-                                             { 0, 1, 0, 0 }, 
-                                             { 0, 1, 0, 0 }, 
+        int[,] shape14 = new int[M, M] { { 0, 1, 0, 0 },
+                                             { 0, 1, 0, 0 },
+                                             { 0, 1, 0, 0 },
                                              { 0, 1, 0, 0 } };
 
-        int[,] shape15 = new int[M, M] { { 0, 0, 0, 0 }, 
-                                             { 1, 1, 1, 1 }, 
-                                             { 0, 0, 0, 0 }, 
+        int[,] shape15 = new int[M, M] { { 0, 0, 0, 0 },
+                                             { 1, 1, 1, 1 },
+                                             { 0, 0, 0, 0 },
                                              { 0, 0, 0, 0 } };
 
-        int[,] shape16 = new int[M, M] { { 1, 1, 1, 0 }, 
-                                             { 1, 1, 1, 0 }, 
-                                             { 1, 1, 1, 0 }, 
+        int[,] shape16 = new int[M, M] { { 1, 1, 1, 0 },
+                                             { 1, 1, 1, 0 },
+                                             { 1, 1, 1, 0 },
                                              { 0, 0, 0, 0 } };
 
         double cellWidth = 40.0;
@@ -137,7 +139,7 @@ namespace Block
         public MainWindow()
         {
             InitializeComponent();
-                   
+
             for (int i = 0; i < N; i++) //Создаем массив-схему основного поля
             {
                 for (int j = 0; j < N; j++)
@@ -164,14 +166,14 @@ namespace Block
             figuresArray = new Figure[17] {figure0, figure1, figure2, figure3, figure4, figure5, figure6,
                                            figure7, figure8, figure9, figure10, figure11, figure12, figure13,
                                            figure14, figure15, figure16};
-            
+
             canvasMain = Redraw(mainField, canvasMain);
             canvasUpper1 = Redraw(shapeField, canvasUpper1);
             canvasUpper2 = Redraw(shapeField, canvasUpper2);
-            
+
         }
 
-        public Canvas Redraw(int[,] field, Canvas currentCanvas)
+        public Canvas Redraw(int[,] field, Canvas currentCanvas) //МЕТОД ПЕРЕРИСОВКИ КАНВАСА
         {
             int rows = field.GetLength(0);
             int columns = field.GetLength(1);
@@ -230,7 +232,7 @@ namespace Block
             return currentCanvas;
         }
 
-        public Canvas Delete_Rows_Columns(ref int[,] field, Canvas canvas_Main)
+        public Canvas Delete_Rows_Columns(ref int[,] field, Canvas canvas_Main) //МЕТОД УДАЛЕНИЯ ЗАПОЛНЕННЫХ РЯДОВ И КОЛОНОК
         {
             //int rows = field.GetLength(1);
             //int columns = field.GetLength(0);
@@ -290,7 +292,7 @@ namespace Block
         }
 
 
-        public bool Is_Inside_Canvas(Canvas currentCanvas)
+        public bool Is_Inside_Canvas(Canvas currentCanvas) // МЕТОД ПРОВЕРКИ НА ТО, ЧТО КУРСОР НАХОДИТСЯ ВНУТРИ КАНВАСА
         {
             mousePosition = Mouse.GetPosition(currentCanvas);
 
@@ -302,7 +304,7 @@ namespace Block
         }
 
 
-        public int DrawFigures(Random rand, Canvas currentCanvas)
+        public int DrawFigures(Random rand, Canvas currentCanvas) //МЕТОД, СЛУЧАЙНЫМ ОБРАЗОМ РИСУЮЩИЙ ФИГУРЫ
         {
             int flag = 0;
 
@@ -314,21 +316,7 @@ namespace Block
             return flag;
         }
 
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            GameStart();
-        }
-
-        private void GameStart()
-        {
-            Random r = new Random();
-            currentFigureNumber1 = DrawFigures(r, canvasUpper1);
-            currentFigureNumber2 = DrawFigures(r, canvasUpper2);
-            Start.IsEnabled = false;
-        }
-
-        public bool CheckedPlace()
+        public bool CheckedPlace(int[,] bigFigure) //МЕТОД, ПРОВЕРЯЮЩИЙ, ЧТО КЛЕТКИ ПОД ФИГУРОЙ СВОБОДНЫ
         {
             for (int i = 0; i < N; i++)
             {
@@ -343,14 +331,14 @@ namespace Block
             return true;
         }
 
-        public int[,] Transforming(int[,] figure, int a, int c)
+        public int[,] Transforming(int[,] figure, int a, int c) //МЕТОД, ПРЕОБРАЗУЮЩИЙ МАССИВ ФИГУРЫ В МАССИВ РАЗМЕРА ОСНОВНОГО ПОЛЯ
         {
             for (int i = 0; i < M; i++)
             {
                 for (int j = 0; j < M; j++)
                 {
-                    if (figure[i,j]!=0)
-                        mainField[a+i, c+j] = figure[i, j];
+                    if (figure[i, j] != 0)
+                        mainField[a + i, c + j] = figure[i, j];
                     else
                         mainField[i, j] = 0;
                 }
@@ -360,11 +348,9 @@ namespace Block
 
         private void canvasUpper1_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (Is_Inside_Canvas(canvasUpper1) == true)
+            if (Is_Inside_Canvas(canvasUpper1))
             {
                 selected1 = true;
-                //Рисуем фигуру, которую будет перемещать
-                //НАДО ДВИГАТЬ КАНВАС canvasMove1
             }
         }
 
@@ -372,21 +358,35 @@ namespace Block
         {
             Random r = new Random();
             mousePosition = Mouse.GetPosition(this);
-            int a = Convert.ToInt32((mousePosition.X - 80)/ 40)+1;
-            int c = Convert.ToInt32((mousePosition.Y - 240) / 40);
-            if ((CheckedPlace() == true) && (selected1 == true))
+            int a = Convert.ToInt32((mousePosition.X - 80) / 40) + 1; //"КООРДИНАТА Х" КЛЕТКИ НА ОСНОВНОМ ПОЛЕ, НА КОТОРОЙ НАХОДИТСЯ КУРСОР
+            int c = Convert.ToInt32((mousePosition.Y - 240) / 40); //"КООРДИНАТА У" КЛЕТКИ НА ОСНОВНОМ ПОЛЕ, НА КОТОРОЙ НАХОДИТСЯ КУРСОР
+
+            if (selected1)
             {
+
                 bigFigure = Transforming(figuresArray[currentFigureNumber1].shape, a, c);
-                Redraw(bigFigure, canvasMain);
-                canvasUpper1.Children.Clear();
-                currentFigureNumber1 = DrawFigures(r, canvasUpper1);
+
+                if (CheckedPlace(bigFigure))
+                {
+                    canvasMain.Children.Clear();
+                    Redraw(bigFigure, canvasMain);
+
+                    canvasUpper1.Children.Clear();
+                    currentFigureNumber1 = DrawFigures(r, canvasUpper1);
+                }
             }
-            else
+
+            else if (selected2)
             {
                 bigFigure = Transforming(figuresArray[currentFigureNumber2].shape, a, c);
-                Redraw(bigFigure, canvasMain);
-                canvasUpper2.Children.Clear();
-                currentFigureNumber2 = DrawFigures(r, canvasUpper2);
+
+                if (CheckedPlace(bigFigure))
+                {
+
+                    Redraw(bigFigure, canvasMain);
+                    canvasUpper2.Children.Clear();
+                    currentFigureNumber2 = DrawFigures(r, canvasUpper2);
+                }
             }
         }
 
@@ -394,8 +394,22 @@ namespace Block
         {
             if (Is_Inside_Canvas(canvasUpper2) == true)
             {
-                selected1 = false;
+                selected2 = true;
             }
+        }
+
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            GameStart();
+        }
+
+        private void GameStart()
+        {
+            Random r = new Random();
+            currentFigureNumber1 = DrawFigures(r, canvasUpper1);
+            currentFigureNumber2 = DrawFigures(r, canvasUpper2);
+            Start.IsEnabled = false;
         }
 
         private void Rules_Click(object sender, RoutedEventArgs e)
