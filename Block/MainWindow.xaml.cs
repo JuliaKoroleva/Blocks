@@ -229,7 +229,7 @@ namespace Block
                 }
             }
             return currentCanvas;
-        }
+                    }
 
         public Canvas RedrawMove(int[,] field, Canvas currentCanvas) //МЕТОД ПЕРЕРИСОВКИ КАНВАСА ПРИ ДВИЖЕНИИ КУРСОРА
         {
@@ -251,11 +251,11 @@ namespace Block
 
                     if (field[i, j] != 0)
                     {
-                        Canvas.SetLeft(rect, rect.Width * j);
-                        Canvas.SetTop(rect, rect.Height * i);
-                        currentCanvas.Children.Add(rect);        
-                    }           
+                    Canvas.SetLeft(rect, rect.Width * j);
+                    Canvas.SetTop(rect, rect.Height * i);
+                    currentCanvas.Children.Add(rect);
                 }
+            }
             }
             return currentCanvas;
         }
@@ -380,6 +380,7 @@ namespace Block
             if (Is_Inside_Canvas(canvasUpper1))
             {
                 selected1 = true;
+                canvasMain.IsEnabled = true;
             }
         }
 
@@ -429,6 +430,7 @@ namespace Block
 
                 selected2 = false;
             }
+            canvasMain.IsEnabled = false;
         }
 
 
@@ -439,7 +441,7 @@ namespace Block
             int c = Convert.ToInt32((mousePosition.Y - 240) / 40); //"КООРДИНАТА У" КЛЕТКИ НА ОСНОВНОМ ПОЛЕ, НА КОТОРОЙ НАХОДИТСЯ КУРСОР
 
             if (selected1)
-            {
+        {
                 bigFigure = Transforming(figuresArray[currentFigureNumber1].shape, a, c);
                 RedrawMove(bigFigure, canvasMain);
             }
@@ -448,6 +450,8 @@ namespace Block
             {
                 bigFigure = Transforming(figuresArray[currentFigureNumber2].shape, a, c);
                 RedrawMove(bigFigure, canvasMain);
+                selected2 = true;
+                canvasMain.IsEnabled = true;
             }
         }
 
@@ -480,6 +484,15 @@ namespace Block
             MessageBox.Show("Blocks game 1.0 разработчики: Егорова Софья, Келесиди София, Королева Юлия  20.03.2015");
         }
 
+        private void RestartGame()
+        {
+            canvasUpper1.Children.Clear();
+            canvasUpper2.Children.Clear();
+            canvasMain.Children.Clear();
+
+            Start.IsEnabled = true;
+        }
+
         private void HandleKeyDown(object sender, KeyEventArgs e)
         {
             switch (e.Key)
@@ -493,6 +506,9 @@ namespace Block
                 case Key.F2:
                     GameStart();
                     break;
+                case Key.F3:
+                    RestartGame();
+                        break;
                 case Key.F11:
                     AboutGame();
                     break;
