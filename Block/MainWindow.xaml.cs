@@ -423,7 +423,7 @@ namespace Block
 
         private void canvasUpper2_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (Is_Inside_Canvas(canvasUpper2) == true)
+            if (Is_Inside_Canvas(canvasUpper2))
             {
                 selected2 = true;
                 canvasMain.IsEnabled = true;
@@ -443,7 +443,6 @@ namespace Block
 
                 if (CheckedPlace(bigFigure))
                 {
-                    //canvasMain.Children.Clear();
                     Redraw(bigFigure, canvasMain);
                     mainField = Add_Figure_To_Array(bigFigure, mainField);
 
@@ -462,6 +461,8 @@ namespace Block
                 {
 
                     Redraw(bigFigure, canvasMain);
+                    mainField = Add_Figure_To_Array(bigFigure, mainField);
+
                     canvasUpper2.Children.Clear();
                     currentFigureNumber2 = DrawFigures(r, canvasUpper2);
                 }
