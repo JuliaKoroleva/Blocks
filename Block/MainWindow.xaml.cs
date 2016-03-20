@@ -470,8 +470,8 @@ namespace Block
         {
             Random r = new Random();
             mousePosition = Mouse.GetPosition(this);
-            int Xcell = Convert.ToInt32((mousePosition.X - 80) / 40)+1; //"КООРДИНАТА Х" КЛЕТКИ НА ОСНОВНОМ ПОЛЕ, НА КОТОРОЙ НАХОДИТСЯ КУРСОР
-            int Ycell = Convert.ToInt32((mousePosition.Y - 240) / 40); //"КООРДИНАТА У" КЛЕТКИ НА ОСНОВНОМ ПОЛЕ, НА КОТОРОЙ НАХОДИТСЯ КУРСОР
+            int Xcell = Convert.ToInt32((mousePosition.X - 120) / 40) + 1; //"КООРДИНАТА Х" КЛЕТКИ НА ОСНОВНОМ ПОЛЕ, НА КОТОРОЙ НАХОДИТСЯ КУРСОР
+            int Ycell = Convert.ToInt32((mousePosition.Y - 290) / 40) ; //"КООРДИНАТА У" КЛЕТКИ НА ОСНОВНОМ ПОЛЕ, НА КОТОРОЙ НАХОДИТСЯ КУРСОР
 
             if (selected1)
             {
@@ -516,8 +516,8 @@ namespace Block
         private void canvasMain_MouseMove(object sender, MouseEventArgs e)
         {
             mousePosition = Mouse.GetPosition(this);
-            int Xcell = Convert.ToInt32((mousePosition.X - 80) / 40) + 1; //"КООРДИНАТА Х" КЛЕТКИ НА ОСНОВНОМ ПОЛЕ, НА КОТОРОЙ НАХОДИТСЯ КУРСОР
-            int Ycell = Convert.ToInt32((mousePosition.Y - 240) / 40); //"КООРДИНАТА У" КЛЕТКИ НА ОСНОВНОМ ПОЛЕ, НА КОТОРОЙ НАХОДИТСЯ КУРСОР
+            int Xcell = Convert.ToInt32((mousePosition.X - 120) / 40) + 1; //"КООРДИНАТА Х" КЛЕТКИ НА ОСНОВНОМ ПОЛЕ, НА КОТОРОЙ НАХОДИТСЯ КУРСОР
+            int Ycell = Convert.ToInt32((mousePosition.Y - 290) / 40); //"КООРДИНАТА У" КЛЕТКИ НА ОСНОВНОМ ПОЛЕ, НА КОТОРОЙ НАХОДИТСЯ КУРСОР
 
             if (selected1)
             {
