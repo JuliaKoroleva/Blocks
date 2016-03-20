@@ -106,7 +106,7 @@ namespace Block
         int[,] shape11 = new int[M, M] { { 1, 1, 1, 0 },
                                              { 0, 0, 1, 0 },
                                              { 0, 0, 1, 0 },
-                                             { 0, 0, 1, 0 } };
+                                             { 0, 0, 0, 0 } };
 
         int[,] shape12 = new int[M, M] { { 0, 0, 1, 0 },
                                              { 0, 0, 1, 0 },
@@ -436,7 +436,7 @@ namespace Block
         {
             Random r = new Random();
             mousePosition = Mouse.GetPosition(this);
-            int Xcell = Convert.ToInt32((mousePosition.X - 80) / 40) + 1; //"КООРДИНАТА Х" КЛЕТКИ НА ОСНОВНОМ ПОЛЕ, НА КОТОРОЙ НАХОДИТСЯ КУРСОР
+            int Xcell = Convert.ToInt32((mousePosition.X - 80) / 40)+1; //"КООРДИНАТА Х" КЛЕТКИ НА ОСНОВНОМ ПОЛЕ, НА КОТОРОЙ НАХОДИТСЯ КУРСОР
             int Ycell = Convert.ToInt32((mousePosition.Y - 240) / 40); //"КООРДИНАТА У" КЛЕТКИ НА ОСНОВНОМ ПОЛЕ, НА КОТОРОЙ НАХОДИТСЯ КУРСОР
 
             if (selected1)
@@ -451,6 +451,7 @@ namespace Block
 
                     canvasUpper1.Children.Clear();
                     currentFigureNumber1 = DrawFigures(r, canvasUpper1);
+
                 }
 
                 selected1 = false;
@@ -531,7 +532,7 @@ namespace Block
             canvasUpper1.Children.Clear();
             canvasUpper2.Children.Clear();
             canvasMain.Children.Clear();
-
+            canvasMain = Redraw(mainField, canvasMain);
             Start.IsEnabled = true;
         }
 
@@ -546,11 +547,9 @@ namespace Block
                     GameRules();
                     break;
                 case Key.F2:
+                    RestartGame();
                     GameStart(); 
                     break;
-                case Key.F3:
-                    RestartGame();
-                        break;
                 case Key.F11:
                     AboutGame();
                     break;
