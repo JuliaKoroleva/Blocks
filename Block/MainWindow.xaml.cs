@@ -156,24 +156,25 @@ namespace Block
                 }
             }
 
-            figure0 = new Figure(shape0); figure1 = new Figure(shape1); figure2 = new Figure(shape2);
-            figure3 = new Figure(shape3); figure4 = new Figure(shape4); figure5 = new Figure(shape5);
-            figure6 = new Figure(shape6); figure7 = new Figure(shape7); figure8 = new Figure(shape8);
-            figure9 = new Figure(shape9); figure10 = new Figure(shape10); figure11 = new Figure(shape11);
-            figure12 = new Figure(shape12); figure13 = new Figure(shape13); figure14 = new Figure(shape14);
-            figure15 = new Figure(shape15); figure16 = new Figure(shape16);
+            figure0 = new Figure(shape0, Colors.DarkSalmon); figure1 = new Figure(shape1, Colors.DarkSeaGreen); figure2 = new Figure(shape2, Colors.SkyBlue);
+            figure3 = new Figure(shape3, Colors.DeepSkyBlue); figure4 = new Figure(shape4, Colors.DarkTurquoise); figure5 = new Figure(shape5, Colors.SeaGreen);
+            figure6 = new Figure(shape6, Colors.HotPink); figure7 = new Figure(shape7, Colors.Indigo); figure8 = new Figure(shape8, Colors.Salmon);
+            figure9 = new Figure(shape9, Colors.Magenta); figure10 = new Figure(shape10, Colors.Maroon); figure11 = new Figure(shape11, Colors.Purple);
+            figure12 = new Figure(shape12, Colors.MediumPurple); figure13 = new Figure(shape13, Colors.MediumSeaGreen); figure14 = new Figure(shape14, Colors.Pink);
+            figure15 = new Figure(shape15, Colors.MediumBlue); figure16 = new Figure(shape16, Colors.MediumVioletRed);
 
             figuresArray = new Figure[17] {figure0, figure1, figure2, figure3, figure4, figure5, figure6,
                                            figure7, figure8, figure9, figure10, figure11, figure12, figure13,
                                            figure14, figure15, figure16};
 
-            canvasMain = Redraw(mainField, canvasMain);
-            canvasUpper1 = Redraw(shapeField, canvasUpper1);
-            canvasUpper2 = Redraw(shapeField, canvasUpper2);
+            canvasMain = Redraw(mainField, canvasMain, Colors.Plum);
+
+            canvasUpper1 = Redraw(shapeField, canvasUpper1, Colors.Plum);
+            canvasUpper2 = Redraw(shapeField, canvasUpper2, Colors.Plum);
 
         }
 
-        public Canvas Redraw(int[,] field, Canvas currentCanvas) //МЕТОД ПЕРЕРИСОВКИ КАНВАСА
+        public Canvas Redraw(int[,] field, Canvas currentCanvas, Color color) //МЕТОД ПЕРЕРИСОВКИ КАНВАСА
         {
             int rows = field.GetLength(0);
             int columns = field.GetLength(1);
@@ -191,37 +192,40 @@ namespace Block
 
                     if ((field[i, j] != 0))
                     {
-                        Random rand = new Random();
+                        rect.Fill = new SolidColorBrush(color);
+                        rect.Stroke = new SolidColorBrush(Colors.Gray);
 
-                        switch (rand.Next() % 6)
-                        {
-                            case 0:
-                                rect.Fill = new SolidColorBrush(Colors.LightCoral);
-                                rect.Stroke = new SolidColorBrush(Colors.Gray);
-                                break;
-                            case 1:
-                                rect.Fill = new SolidColorBrush(Colors.LightGreen);
-                                rect.Stroke = new SolidColorBrush(Colors.Gray);
-                                break;
-                            case 2:
-                                rect.Fill = new SolidColorBrush(Colors.LightSkyBlue);
-                                rect.Stroke = new SolidColorBrush(Colors.Gray);
-                                break;
-                            case 3:
-                                rect.Fill = new SolidColorBrush(Colors.Yellow);
-                                rect.Stroke = new SolidColorBrush(Colors.Gray);
-                                break;
-                            case 4:
-                                rect.Fill = new SolidColorBrush(Colors.Plum);
-                                rect.Stroke = new SolidColorBrush(Colors.Gray);
-                                break;
-                            case 5:
-                                rect.Fill = new SolidColorBrush(Colors.LightPink);
-                                rect.Stroke = new SolidColorBrush(Colors.Gray);
-                                break;
-                            default:
-                                break;
-                        }
+                        //Random rand = new Random();
+
+                        //switch (rand.Next() % 6)
+                        //{
+                        //    case 0:
+                        //        rect.Fill = new SolidColorBrush(Colors.LightCoral);
+                        //        rect.Stroke = new SolidColorBrush(Colors.Gray);
+                        //        break;
+                        //    case 1:
+                        //        rect.Fill = new SolidColorBrush(Colors.LightGreen);
+                        //        rect.Stroke = new SolidColorBrush(Colors.Gray);
+                        //        break;
+                        //    case 2:
+                        //        rect.Fill = new SolidColorBrush(Colors.LightSkyBlue);
+                        //        rect.Stroke = new SolidColorBrush(Colors.Gray);
+                        //        break;
+                        //    case 3:
+                        //        rect.Fill = new SolidColorBrush(Colors.Yellow);
+                        //        rect.Stroke = new SolidColorBrush(Colors.Gray);
+                        //        break;
+                        //    case 4:
+                        //        rect.Fill = new SolidColorBrush(Colors.Plum);
+                        //        rect.Stroke = new SolidColorBrush(Colors.Gray);
+                        //        break;
+                        //    case 5:
+                        //        rect.Fill = new SolidColorBrush(Colors.LightPink);
+                        //        rect.Stroke = new SolidColorBrush(Colors.Gray);
+                        //        break;
+                        //    default:
+                        //        break;
+                        //}
                     }
 
                     Canvas.SetLeft(rect, rect.Width * j);
@@ -235,7 +239,7 @@ namespace Block
         public Canvas RedrawMove(int[,] field, Canvas currentCanvas) //МЕТОД ПЕРЕРИСОВКИ КАНВАСА ПРИ ДВИЖЕНИИ КУРСОРА
         {
             canvasMain.Children.Clear();
-            Redraw(mainField, canvasMain);
+            Redraw(mainField, canvasMain, Colors.Plum);
 
             int rows = field.GetLength(0);
             int columns = field.GetLength(1);
@@ -343,7 +347,7 @@ namespace Block
 
             var randValue = rand.Next() % 17;
 
-            Redraw(figuresArray[randValue].shape, currentCanvas);
+            Redraw(figuresArray[randValue].shape, currentCanvas, figuresArray[randValue].color);
             flag = randValue;
 
             return flag;
@@ -459,7 +463,7 @@ namespace Block
                 {
                     if (CheckedPlace(bigFigure, mainField))
                     {
-                        Redraw(bigFigure, canvasMain);
+                        Redraw(bigFigure, canvasMain, Colors.Plum);
                         mainField = Add_Figure_To_Array(bigFigure, mainField);
                         Delete_Rows_Columns(ref mainField, canvasMain);
 
@@ -478,7 +482,7 @@ namespace Block
                     if (CheckedPlace(bigFigure, mainField))
                     {
 
-                        Redraw(bigFigure, canvasMain);
+                        Redraw(bigFigure, canvasMain, Colors.Plum);
                         mainField = Add_Figure_To_Array(bigFigure, mainField);
 
                         canvasUpper2.Children.Clear();
@@ -546,7 +550,7 @@ namespace Block
             canvasUpper1.Children.Clear();
             canvasUpper2.Children.Clear();
             canvasMain.Children.Clear();
-            canvasMain = Redraw(mainField, canvasMain);
+            canvasMain = Redraw(mainField, canvasMain, Colors.Plum);
             Start.IsEnabled = true;
         }
 

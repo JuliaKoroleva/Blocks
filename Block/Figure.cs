@@ -11,13 +11,13 @@ namespace Block
     {
         const int M = 4;
         public int[,] shape;
-        Color color;
+        public Color color;
 
-        public Figure(int[,] shape)
+        public Figure(int[,] shape, Color color)
         {
             //this.shape = new int[M, M];
             this.shape = shape;
-            color = Colors.Plum;
+            this.color = color;
         }
     }
 }
