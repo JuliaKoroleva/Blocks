@@ -448,18 +448,18 @@ namespace Block
         private void canvasMain_MouseMove(object sender, MouseEventArgs e)
         {
             mousePosition = Mouse.GetPosition(this);
-            int a = Convert.ToInt32((mousePosition.X - 80) / 40) + 1; //"КООРДИНАТА Х" КЛЕТКИ НА ОСНОВНОМ ПОЛЕ, НА КОТОРОЙ НАХОДИТСЯ КУРСОР
-            int c = Convert.ToInt32((mousePosition.Y - 240) / 40); //"КООРДИНАТА У" КЛЕТКИ НА ОСНОВНОМ ПОЛЕ, НА КОТОРОЙ НАХОДИТСЯ КУРСОР
+            int Xcell = Convert.ToInt32((mousePosition.X - 80) / 40) + 1; //"КООРДИНАТА Х" КЛЕТКИ НА ОСНОВНОМ ПОЛЕ, НА КОТОРОЙ НАХОДИТСЯ КУРСОР
+            int Ycell = Convert.ToInt32((mousePosition.Y - 240) / 40); //"КООРДИНАТА У" КЛЕТКИ НА ОСНОВНОМ ПОЛЕ, НА КОТОРОЙ НАХОДИТСЯ КУРСОР
 
             if (selected1)
             {
-                Transforming(figuresArray[currentFigureNumber1].shape, a, c);
+                Transforming(figuresArray[currentFigureNumber1].shape, Ycell, Xcell);
                 RedrawMove(bigFigure, canvasMain);
             }
 
             else if (selected2)
             {
-                Transforming(figuresArray[currentFigureNumber2].shape, a, c);
+                Transforming(figuresArray[currentFigureNumber2].shape, Ycell, Xcell);
                 RedrawMove(bigFigure, canvasMain);
                 selected2 = true;
                 canvasMain.IsEnabled = true;
