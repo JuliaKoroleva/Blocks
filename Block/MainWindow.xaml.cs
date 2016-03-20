@@ -380,10 +380,23 @@ namespace Block
                     {
                         bigFigure[Ycell + i, Xcell + j] = figure[i, j];
                         
-                    }
-                   
+                    }       
                 }
             }
+        }
+
+        public int[,] Add_Figure_To_Array (int[,] figure, int[,] field)
+        {
+            for (int i = 0; i < N; i++)
+            {
+                for(int j = 0; j < N; j++)
+                {
+                    if (figure[i, j] == 1)
+                        field[i, j] = 1;
+                }
+            }
+
+            return field;
         }
 
         private void canvasUpper1_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -412,13 +425,13 @@ namespace Block
 
             if (selected1)
             {
-
                 Transforming(figuresArray[currentFigureNumber1].shape, Ycell, Xcell);
 
                 if (CheckedPlace(bigFigure))
                 {
                     //canvasMain.Children.Clear();
                     Redraw(bigFigure, canvasMain);
+                    mainField = Add_Figure_To_Array(bigFigure, mainField);
 
                     canvasUpper1.Children.Clear();
                     currentFigureNumber1 = DrawFigures(r, canvasUpper1);
