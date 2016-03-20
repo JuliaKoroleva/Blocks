@@ -229,10 +229,12 @@ namespace Block
                 }
             }
             return currentCanvas;
-                    }
+        }
 
         public Canvas RedrawMove(int[,] field, Canvas currentCanvas) //МЕТОД ПЕРЕРИСОВКИ КАНВАСА ПРИ ДВИЖЕНИИ КУРСОРА
         {
+            int count = 0;
+            canvasMain.Children.Clear();
             Redraw(mainField, canvasMain);
 
             int rows = field.GetLength(0);
@@ -245,18 +247,20 @@ namespace Block
                     Rectangle rect = new Rectangle();
 
                     rect.Stroke = new SolidColorBrush(Colors.DarkViolet);
-                    rect.StrokeThickness = 3;   
+                    rect.StrokeThickness = 3;
                     rect.Width = cellWidth;
                     rect.Height = cellHeight;
 
                     if (field[i, j] != 0)
                     {
-                    Canvas.SetLeft(rect, rect.Width * j);
-                    Canvas.SetTop(rect, rect.Height * i);
-                    currentCanvas.Children.Add(rect);
+                        Canvas.SetLeft(rect, rect.Width * j);
+                        Canvas.SetTop(rect, rect.Height * i);
+                        currentCanvas.Children.Add(rect);
+                        count++;
+                    }
                 }
             }
-            }
+            Console.WriteLine(count);
             return currentCanvas;
         }
 
@@ -360,19 +364,26 @@ namespace Block
             return true;
         }
 
-        public int[,] Transforming(int[,] figure, int a, int c) //МЕТОД, ПРЕОБРАЗУЮЩИЙ МАССИВ ФИГУРЫ В МАССИВ РАЗМЕРА ОСНОВНОГО ПОЛЯ
+        public void Transforming(int[,] figure, int a, int c) //МЕТОД, ПРЕОБРАЗУЮЩИЙ МАССИВ ФИГУРЫ В МАССИВ РАЗМЕРА ОСНОВНОГО ПОЛЯ
         {
+            for (int i = 0; i < N; i++)
+                for (int j = 0; j < N; j++)
+                {
+                    bigFigure[i, j] = 0;
+                }
+
             for (int i = 0; i < M; i++)
             {
                 for (int j = 0; j < M; j++)
                 {
                     if (figure[i, j] != 0)
-                        mainField[a + i, c + j] = figure[i, j];
-                    else
-                        mainField[i, j] = 0;
+                    {
+                        bigFigure[a + i, c + j] = figure[i, j];
+                        
+                    }
+                   
                 }
             }
-            return mainField;
         }
 
         private void canvasUpper1_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -402,7 +413,7 @@ namespace Block
             if (selected1)
             {
 
-                bigFigure = Transforming(figuresArray[currentFigureNumber1].shape, a, c);
+                Transforming(figuresArray[currentFigureNumber1].shape, a, c);
 
                 if (CheckedPlace(bigFigure))
                 {
@@ -418,7 +429,7 @@ namespace Block
 
             else if (selected2)
             {
-                bigFigure = Transforming(figuresArray[currentFigureNumber2].shape, a, c);
+                Transforming(figuresArray[currentFigureNumber2].shape, a, c);
 
                 if (CheckedPlace(bigFigure))
                 {
@@ -441,14 +452,14 @@ namespace Block
             int c = Convert.ToInt32((mousePosition.Y - 240) / 40); //"КООРДИНАТА У" КЛЕТКИ НА ОСНОВНОМ ПОЛЕ, НА КОТОРОЙ НАХОДИТСЯ КУРСОР
 
             if (selected1)
-        {
-                bigFigure = Transforming(figuresArray[currentFigureNumber1].shape, a, c);
+            {
+                Transforming(figuresArray[currentFigureNumber1].shape, a, c);
                 RedrawMove(bigFigure, canvasMain);
             }
 
             else if (selected2)
             {
-                bigFigure = Transforming(figuresArray[currentFigureNumber2].shape, a, c);
+                Transforming(figuresArray[currentFigureNumber2].shape, a, c);
                 RedrawMove(bigFigure, canvasMain);
                 selected2 = true;
                 canvasMain.IsEnabled = true;
