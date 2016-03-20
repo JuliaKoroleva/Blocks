@@ -567,8 +567,26 @@ namespace Block
         {
             canvasUpper1.Children.Clear();
             canvasUpper2.Children.Clear();
-            canvasMain.Children.Clear();
-            canvasMain = Redraw(mainField, canvasMain, Colors.Plum);
+            
+            Rectangle rect = new Rectangle();
+            rect.Stroke = new SolidColorBrush(Colors.Gray);
+            rect.Width = cellWidth;
+            rect.Height = cellHeight;
+            rect.Fill = new SolidColorBrush(Colors.White);
+            for (int i = 0; i < N; i++)
+            {
+                for (int j = 0; j < N; j++)
+                {
+                    canvasMain.Children.Clear();
+                    canvasMain = Redraw(mainField, canvasMain, Colors.Plum);
+                    Canvas.SetLeft(rect, rect.Width * i);
+                    Canvas.SetTop(rect, rect.Height * j);
+                    canvasMain.Children.Add(rect);
+                    mainField[i, j] = 0;
+                }
+                
+            }
+            
             Start.IsEnabled = true;
         }
 
