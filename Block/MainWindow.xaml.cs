@@ -317,6 +317,11 @@ namespace Block
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            GameStart();
+        }
+
+        private void GameStart()
+        {
             Random r = new Random();
             currentFigureNumber1 = DrawFigures(r, canvasUpper1);
             currentFigureNumber2 = DrawFigures(r, canvasUpper2);
@@ -393,5 +398,40 @@ namespace Block
             }
         }
 
+        private void Rules_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Правила игры: ");
+        }
+
+        private void GameRules()
+        {
+            MessageBox.Show("Правила игры: ");
+        }
+
+        private void AboutGame()
+        {
+            MessageBox.Show("Blocks game 1.0 разработчики: Егорова Софья, Келесиди София, Королева Юлия  20.03.2015");
+        }
+
+        private void HandleKeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.Escape:
+                    this.Close();
+                    break;
+                case Key.F1:
+                    GameRules();
+                    break;
+                case Key.F2:
+                    GameStart();
+                    break;
+                case Key.F11:
+                    AboutGame();
+                    break;
+                    default:
+                    break;
+            }
+        }
     }
 }
