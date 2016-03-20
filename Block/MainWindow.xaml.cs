@@ -586,7 +586,8 @@ namespace Block
                 }
                 
             }
-            
+            score = 0;
+            Score.Content = getScore().ToString("0");
             Start.IsEnabled = true;
         }
 
