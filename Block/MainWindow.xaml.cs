@@ -378,6 +378,17 @@ namespace Block
                 {
                     if (figure[i, j] != 0)
                     {
+                        if ((Ycell + i>9)&&(Xcell + j > 9))
+                            bigFigure[9, 9] = figure[i, j];
+                        else if (Ycell + i>9)
+                            bigFigure[9, Xcell + j] = figure[i, j];
+                        else if (Xcell + j > 9)
+                            bigFigure[Ycell + i, 9] = figure[i, j];
+                        else if (Ycell + i<0)
+                            bigFigure[0, Xcell + j] = figure[i, j];
+                        else if (Xcell + j <0)
+                            bigFigure[Ycell + i, 0] = figure[i, j];
+                        else
                         bigFigure[Ycell + i, Xcell + j] = figure[i, j];
                         
                     }       
@@ -413,6 +424,7 @@ namespace Block
             if (Is_Inside_Canvas(canvasUpper2) == true)
             {
                 selected2 = true;
+                canvasMain.IsEnabled = true;
             }
         }
 
@@ -528,7 +540,7 @@ namespace Block
                     GameRules();
                     break;
                 case Key.F2:
-                    GameStart();
+                    GameStart(); 
                     break;
                 case Key.F3:
                     RestartGame();
