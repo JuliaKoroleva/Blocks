@@ -136,6 +136,13 @@ namespace Block
         double cellWidth = 40.0;
         double cellHeight = 40.0;
 
+        private int score = 0;
+
+        public int getScore()
+        {
+            return score;
+        }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -172,6 +179,7 @@ namespace Block
             canvasUpper1 = Redraw(shapeField, canvasUpper1, Colors.Plum);
             canvasUpper2 = Redraw(shapeField, canvasUpper2, Colors.Plum);
 
+            
         }
 
         public Canvas Redraw(int[,] field, Canvas currentCanvas, Color color) //МЕТОД ПЕРЕРИСОВКИ КАНВАСА
@@ -296,7 +304,7 @@ namespace Block
                     for (int j2 = 0; j2 < N; j2++)
                     {
                         currentCanvas.Children.Clear();
-                        canvasMain = Redraw(mainField, canvasMain);
+                        canvasMain = Redraw(mainField, canvasMain, Colors.Plum);
                         Canvas.SetLeft(rect, rect.Width * j2);
                         Canvas.SetTop(rect, rect.Height * i);
                         
@@ -304,7 +312,7 @@ namespace Block
 
                         field[i, j2] = 0;
                     }
-
+                    score += 10;
                 }
 
                 if (!flag_columns) //если весь столбец заполнен
@@ -318,7 +326,7 @@ namespace Block
                     for (int j2 = 0; j2 < N; j2++)
                     {
                         currentCanvas.Children.Clear();
-                        canvasMain = Redraw(mainField, canvasMain);
+                        canvasMain = Redraw(mainField, canvasMain, Colors.Plum);
 
                         Canvas.SetLeft(rect, rect.Width * i);
                         Canvas.SetTop(rect, rect.Height * j2);
@@ -326,6 +334,7 @@ namespace Block
 
                         field[j2, i] = 0;
                     }
+                    score += 10;
                 }
 
                 flag_rows = false;
@@ -500,6 +509,7 @@ namespace Block
                 }
             }
             canvasMain.IsEnabled = false;
+            Score.Content = getScore().ToString("0");
         }
 
 
