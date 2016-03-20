@@ -180,7 +180,6 @@ namespace Block
             canvasUpper1 = Redraw(shapeField, canvasUpper1, Colors.MediumSpringGreen);
             canvasUpper2 = Redraw(shapeField, canvasUpper2, Colors.MediumSpringGreen);
 
-
         }
 
         public Canvas Redraw(int[,] field, Canvas currentCanvas, Color color) //МЕТОД ПЕРЕРИСОВКИ КАНВАСА
