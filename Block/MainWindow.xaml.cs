@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -591,6 +592,16 @@ namespace Block
             Start.IsEnabled = true;
         }
 
+        private void SaveResults(int score)
+        {
+            FileStream fs = new FileStream("../../data.txt", FileMode.OpenOrCreate);
+            StreamWriter sw = new StreamWriter(fs);
+            sw.WriteLine("{0} Вы набрали {1} очков", DateTime.Now, score);
+            sw.Close();
+            fs.Close();
+        }
+
+
         private void HandleKeyDown(object sender, KeyEventArgs e)
         {
             switch (e.Key)
@@ -602,6 +613,7 @@ namespace Block
                     GameRules();
                     break;
                 case Key.F2:
+                    SaveResults(score);
                     RestartGame();
                     GameStart(); 
                     break;
