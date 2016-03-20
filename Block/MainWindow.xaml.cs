@@ -246,8 +246,6 @@ namespace Block
 
         public Canvas Delete_Rows_Columns(ref int[,] field, Canvas currentCanvas) //МЕТОД УДАЛЕНИЯ ЗАПОЛНЕННЫХ РЯДОВ И КОЛОНОК
         {
-            //int rows = field.GetLength(1);
-            //int columns = field.GetLength(0);
             bool flag_rows = false; //false - если ряд полностью заполнен, true - если в ряду есть хотя бы один 0
             bool flag_columns = false; //false - если столбец полностью заполнен, true - если в столбце есть хотя бы один 0
 
@@ -509,7 +507,7 @@ namespace Block
 
         private void GameRules()
         {
-            MessageBox.Show("Правила игры: Переставляйте фигуры на поле так, чтобы заполнить горизонтальную и вертикальную линии. Чтобы поставить фигуру: сначала нажмите на нее, а затем нажмите на место на главном поле, куда Вы хотите поставить фигуру. Набирите как можно больше очков. Удачи!");
+            MessageBox.Show("Правила игры: Переставляйте фигуры на поле так, чтобы заполнить горизонтальную и вертикальную линии. Чтобы поставить фигуру: сначала нажмите на нее, а затем нажмите на место на главном поле, куда Вы хотите поставить фигуру. Чтобы начать новую игру нажмите F2. Набирите как можно больше очков. Удачи!");
         }
 
         private void AboutGame()
@@ -560,6 +558,7 @@ namespace Block
             switch (e.Key)
             {
                 case Key.Escape:
+                    SaveResults(score);
                     this.Close();
                     break;
                 case Key.F1:
