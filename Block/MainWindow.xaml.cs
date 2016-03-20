@@ -384,6 +384,8 @@ namespace Block
                             bigFigure[9, Xcell + j] = figure[i, j];
                         else if (Xcell + j > 9)
                             bigFigure[Ycell + i, 9] = figure[i, j];
+                        else if ((Ycell + i<0)&&(Xcell + j <0))
+                            bigFigure[0,0] = figure[i, j];
                         else if (Ycell + i<0)
                             bigFigure[0, Xcell + j] = figure[i, j];
                         else if (Xcell + j <0)
