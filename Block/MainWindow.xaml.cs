@@ -351,6 +351,7 @@ namespace Block
             if (Is_Inside_Canvas(canvasUpper1))
             {
                 selected1 = true;
+                canvasMain.IsEnabled = true;
             }
         }
 
@@ -388,6 +389,7 @@ namespace Block
                     currentFigureNumber2 = DrawFigures(r, canvasUpper2);
                 }
             }
+            canvasMain.IsEnabled = false;
         }
 
         private void canvasUpper2_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -395,6 +397,7 @@ namespace Block
             if (Is_Inside_Canvas(canvasUpper2) == true)
             {
                 selected2 = true;
+                canvasMain.IsEnabled = true;
             }
         }
 
@@ -427,6 +430,15 @@ namespace Block
             MessageBox.Show("Blocks game 1.0 разработчики: Егорова Софья, Келесиди София, Королева Юлия  20.03.2015");
         }
 
+        private void RestartGame()
+        {
+            canvasUpper1.Children.Clear();
+            canvasUpper2.Children.Clear();
+            canvasMain.Children.Clear();
+
+            Start.IsEnabled = true;
+        }
+
         private void HandleKeyDown(object sender, KeyEventArgs e)
         {
             switch (e.Key)
@@ -440,6 +452,9 @@ namespace Block
                 case Key.F2:
                     GameStart();
                     break;
+                case Key.F3:
+                    RestartGame();
+                        break;
                 case Key.F11:
                     AboutGame();
                     break;
