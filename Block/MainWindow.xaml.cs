@@ -38,7 +38,6 @@ namespace Block
         bool selected2 = false;
 
         Point mousePosition;
-        Point shift;
 
         Figure[] figuresArray;
 
@@ -232,6 +231,36 @@ namespace Block
             return currentCanvas;
         }
 
+        public Canvas RedrawMove(int[,] field, Canvas currentCanvas) //МЕТОД ПЕРЕРИСОВКИ КАНВАСА ПРИ ДВИЖЕНИИ КУРСОРА
+        {
+            Redraw(mainField, canvasMain);
+
+            int rows = field.GetLength(0);
+            int columns = field.GetLength(1);
+
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    Rectangle rect = new Rectangle();
+
+                    rect.Stroke = new SolidColorBrush(Colors.DarkViolet);
+                    rect.StrokeThickness = 3;   
+                    rect.Width = cellWidth;
+                    rect.Height = cellHeight;
+
+                    if (field[i, j] != 0)
+                    {
+                        Canvas.SetLeft(rect, rect.Width * j);
+                        Canvas.SetTop(rect, rect.Height * i);
+                        currentCanvas.Children.Add(rect);        
+                    }           
+                }
+            }
+            return currentCanvas;
+        }
+
+
         public Canvas Delete_Rows_Columns(ref int[,] field, Canvas canvas_Main) //МЕТОД УДАЛЕНИЯ ЗАПОЛНЕННЫХ РЯДОВ И КОЛОНОК
         {
             //int rows = field.GetLength(1);
@@ -354,6 +383,14 @@ namespace Block
             }
         }
 
+        private void canvasUpper2_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (Is_Inside_Canvas(canvasUpper2) == true)
+            {
+                selected2 = true;
+            }
+        }
+
         private void canvasMain_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Random r = new Random();
@@ -368,12 +405,14 @@ namespace Block
 
                 if (CheckedPlace(bigFigure))
                 {
-                    canvasMain.Children.Clear();
+                    //canvasMain.Children.Clear();
                     Redraw(bigFigure, canvasMain);
 
                     canvasUpper1.Children.Clear();
                     currentFigureNumber1 = DrawFigures(r, canvasUpper1);
                 }
+
+                selected1 = false;
             }
 
             else if (selected2)
@@ -387,14 +426,28 @@ namespace Block
                     canvasUpper2.Children.Clear();
                     currentFigureNumber2 = DrawFigures(r, canvasUpper2);
                 }
+
+                selected2 = false;
             }
         }
 
-        private void canvasUpper2_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+
+        private void canvasMain_MouseMove(object sender, MouseEventArgs e)
         {
-            if (Is_Inside_Canvas(canvasUpper2) == true)
+            mousePosition = Mouse.GetPosition(this);
+            int a = Convert.ToInt32((mousePosition.X - 80) / 40) + 1; //"КООРДИНАТА Х" КЛЕТКИ НА ОСНОВНОМ ПОЛЕ, НА КОТОРОЙ НАХОДИТСЯ КУРСОР
+            int c = Convert.ToInt32((mousePosition.Y - 240) / 40); //"КООРДИНАТА У" КЛЕТКИ НА ОСНОВНОМ ПОЛЕ, НА КОТОРОЙ НАХОДИТСЯ КУРСОР
+
+            if (selected1)
             {
-                selected2 = true;
+                bigFigure = Transforming(figuresArray[currentFigureNumber1].shape, a, c);
+                RedrawMove(bigFigure, canvasMain);
+            }
+
+            else if (selected2)
+            {
+                bigFigure = Transforming(figuresArray[currentFigureNumber2].shape, a, c);
+                RedrawMove(bigFigure, canvasMain);
             }
         }
 

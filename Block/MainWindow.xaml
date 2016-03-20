@@ -16,7 +16,7 @@
             <Canvas x:Name="canvasUpper1" Height="160" Width="200"  Background="Transparent" MouseLeftButtonDown="canvasUpper1_MouseLeftButtonDown" />
             <Canvas x:Name="canvasUpper2" Height="160" Width="200" Background="Transparent" MouseLeftButtonDown="canvasUpper2_MouseLeftButtonDown"/>
             <Border Grid.ColumnSpan="10" Grid.RowSpan="10" BorderThickness="2" BorderBrush="#7F000000" VerticalAlignment="Bottom">
-                <Canvas x:Name="canvasMain" Height="400" Width="420" Background="Transparent" VerticalAlignment="Bottom" MouseLeftButtonDown="canvasMain_MouseLeftButtonDown" />
+                <Canvas x:Name="canvasMain" Height="400" Width="396" Background="Transparent" VerticalAlignment="Bottom" MouseLeftButtonDown="canvasMain_MouseLeftButtonDown" MouseMove="canvasMain_MouseMove"/>
             </Border>
         </WrapPanel>
     </DockPanel>
