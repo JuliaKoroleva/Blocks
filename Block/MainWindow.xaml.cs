@@ -287,14 +287,13 @@ namespace Block
                     rect.Stroke = new SolidColorBrush(Colors.Gray);
                     rect.Width = cellWidth;
                     rect.Height = cellHeight;
-                    rect.Fill = new SolidColorBrush(Colors.White);
+                    //rect.Fill = new SolidColorBrush(Colors.White);
 
                     for (int j2 = 0; j2 < N; j2++)
                     {
                         Canvas.SetLeft(rect, rect.Width * j2);
                         Canvas.SetTop(rect, rect.Height * i);
-                        currentCanvas.Children.Add(rect);
-
+                        currentCanvas.Children.Remove(rect);
                         field[i, j2] = 0;
                     }
                 }
@@ -362,7 +361,10 @@ namespace Block
             }
 
             if (flag)
+            {
+                canvasMain.IsEnabled = false;
                 return false;
+            }
             else
                 return true;
         }
@@ -443,7 +445,7 @@ namespace Block
             {
                 Transforming(figuresArray[currentFigureNumber1].shape, Ycell, Xcell);
 
-                if (CheckedPlace(bigFigure, mainField))
+                if (CheckedPlace(bigFigure, mainField) == true)
                 {
                     Redraw(bigFigure, canvasMain);
                     mainField = Add_Figure_To_Array(bigFigure, mainField);
@@ -453,7 +455,10 @@ namespace Block
                     currentFigureNumber1 = DrawFigures(r, canvasUpper1);
 
                 }
+                else
+                {
 
+                }
                 selected1 = false;
             }
 
